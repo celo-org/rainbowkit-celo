@@ -18,6 +18,7 @@ export const Valora = ({
   downloadUrls: {
     android: "https://play.google.com/store/apps/details?id=co.clabs.valora",
     ios: "https://apps.apple.com/app/id1520414263?mt=8",
+    qrCode: "https://valoraapp.com/"
   },
   createConnector: () => {
     const connector = getWalletConnectConnector({

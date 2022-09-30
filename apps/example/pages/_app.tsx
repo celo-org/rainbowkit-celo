@@ -3,15 +3,10 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 import type { AppProps } from "next/app";
 
-import {
-  connectorsForWallets,
-  RainbowKitProvider,
-  wallet,
-} from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
-
-import { Valora, CeloWallet, CeloDance } from "@celo/rainbowkit-celo/wallets";
+import celoGroups from "@celo/rainbowkit-celo/lists"
 import { Alfajores, Mainnet } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
@@ -19,18 +14,8 @@ const { chains, provider } = configureChains(
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
 );
 
-const connectors = connectorsForWallets([
-  {
-    groupName: "Recommended",
-    wallets: [
-      Valora({ chains }),
-      CeloWallet({ chains }),
-      CeloDance({ chains }),
-      wallet.steak({ chains }),
-      wallet.walletConnect({ chains }),
-    ],
-  },
-]);
+
+const connectors = celoGroups({chains})
 
 const wagmiClient = createClient({
   autoConnect: true,

@@ -27,11 +27,10 @@ export const CeloTerminal = ({
       desktop: {
         getUri: async () => {
           const { uri } = (await connector.getProvider()).connector;
-
           // Note: This doesn't work. I'll try to have a PR to add deeplinking to CeloTerminal - Nicolas
-          return `celoterminal://wc?uri=${encodeURIComponent(uri)}`;
+          return `https://celoterminal.com/wc?uri=${encodeURIComponent(uri)}`;
         },
-      },
+      }
     };
   },
 });

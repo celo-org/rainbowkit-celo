@@ -2,8 +2,8 @@ import { Chain } from '@rainbow-me/rainbowkit';
 
 const Mainnet: Chain = {
   id: 42220,
-  name: 'Mainnet',
-  network: 'Mainnet',
+  name: 'Celo Mainnet',
+  network: 'Celo Mainnet',
   iconUrl: 'https://reserve.mento.org/assets/tokens/CELO.svg',
   iconBackground: '#fff',
   nativeCurrency: {
@@ -16,7 +16,7 @@ const Mainnet: Chain = {
   },
   blockExplorers: {
     default: { name: 'Block Scout', url: 'https://explorer.celo.org' },
-    etherscan: { name: 'Block Scout', url: 'https://explorer.celo.org' },
+    etherscan: { name: 'CeloScan', url: 'https://celoscan.io' },
   },
   testnet: false,
 };
