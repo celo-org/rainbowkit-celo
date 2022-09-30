@@ -14,7 +14,6 @@
     "react-dom": "17.0.2",
     "@celo/rainbowkit-celo": "*",
     "@rainbow-me/rainbowkit": "~0.5.0",
-    "@celo/contractkit": "~2.1.0",
     "wagmi": "~0.6.4",
     "ethers": "~5.7.0"
   },

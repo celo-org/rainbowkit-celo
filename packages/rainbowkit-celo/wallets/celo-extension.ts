@@ -1,20 +1,15 @@
 import { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { InjectedConnector } from "wagmi/connectors/injected";
-import {
-  MiniContractKit,
-  newKit,
-  newKitFromWeb3,
-} from "@celo/contractkit/lib/mini-kit";
 
-import { Baklava } from "../chains";
+import { Baklava, Mainnet } from "../chains";
 
-export interface ValoraOptions {
+export interface CeloExtensionOptions {
   chains: Chain[];
 }
 
 export const CeloExtension = ({
-  chains = [Baklava],
-}: ValoraOptions): Wallet => {
+  chains = [Mainnet, Baklava],
+}: CeloExtensionOptions): Wallet => {
   const isCeloWalletInjected =
     typeof window !== "undefined" && typeof window.celo !== "undefined";
 

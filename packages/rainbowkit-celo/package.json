@@ -1,15 +1,27 @@
 {
   "name": "@celo/rainbowkit-celo",
+  "author": "cLabs",
   "version": "0.1.0",
+  "description": "Quickly Setup RainbowKit for Celo",
   "main": "./index.tsx",
   "types": "./index.tsx",
+  "type": "module",
+  "sideEffects": false,
   "license": "MIT",
+  "keywords": [
+    "celo",
+    "dapp",
+    "rainbow-kit",
+    "web3",
+    "blockchain"
+  ],
   "scripts": {
     "lint": "eslint *.ts*"
-  },
+    },
   "peerDependencies": {
     "@rainbow-me/rainbowkit": "^0.5.0",
-    "@celo/contractkit": ">=2.0.0 <=3.0.0"
+    "ethers": ">=5.5.1",
+    "wagmi": "0.5.x || 0.6.x"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
