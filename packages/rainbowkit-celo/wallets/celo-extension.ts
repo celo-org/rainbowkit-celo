@@ -11,6 +11,7 @@ export const CeloExtension = ({
   chains = [Mainnet, Baklava],
 }: CeloExtensionOptions): Wallet => {
   const isCeloWalletInjected =
+    // @ts-ignore
     typeof window !== "undefined" && typeof window.celo !== "undefined";
 
   return {
