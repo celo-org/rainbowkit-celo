@@ -24,22 +24,23 @@ export const Valora = ({
     const connector = getWalletConnectConnector({
       chains,
     });
+    async function getUri() {
+      const provider = await connector.getProvider()
+      return provider.connector.uri
+    }
     return {
       connector,
       mobile: {
-        getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
-          return uri;
-        },
+        getUri,
       },
       qrCode: {
-        getUri: async () => (await connector.getProvider()).connector.uri,
+        getUri,
         instructions: {
           learnMoreUrl: "https://valoraapp.com/learn",
           steps: [
             {
               description:
-                "The crypto wallet with 12% rewards to buy, send, spend, earn, and collect NFTs on the Celo blockchain.",
+                "The crypto wallet to buy, send, spend, earn, and collect NFTs on the Celo blockchain.",
               step: "install",
               title: "Open the Valora app",
             },

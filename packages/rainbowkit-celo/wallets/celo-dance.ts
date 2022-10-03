@@ -25,16 +25,18 @@ export const CeloDance = ({
     const connector = getWalletConnectConnector({
       chains,
     });
+    async function getUri() {
+      const { uri } = (await connector.getProvider()).connector;
+      return uri;
+    }
+
     return {
       connector,
       mobile: {
-        getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
-          return uri;
-        },
+        getUri
       },
       qrCode: {
-        getUri: async () => (await connector.getProvider()).connector.uri,
+        getUri,
         instructions: {
           learnMoreUrl: "https://celo.dance/",
           steps: [
