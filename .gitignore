@@ -31,3 +31,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+*ts.map
+packages/rainbowkit-celo/**/*d.ts
+packages/rainbowkit-celo/**/*.js
