@@ -1,4 +1,4 @@
-# Rainbowki-celo
+# Rainbowkit-celo
 
 This is a plugin to help [rainbowkit](https://www.rainbowkit.com/docs) developers support the CELO protocol faster.
 It includes the chain information as well as the main CELO wallets (Valora, Celo Wallet, Celo Terminal...).
