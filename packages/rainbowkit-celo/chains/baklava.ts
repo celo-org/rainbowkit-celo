@@ -15,8 +15,8 @@ const Baklava: Chain = {
     default: 'https://baklava-forno.celo-testnet.org',
   },
   blockExplorers: {
-    default: { name: 'Block Scout', url: 'https://baklava-blockscout.celo-testnet.org' },
-    etherscan: { name: 'Block Scout', url: 'https://baklava-blockscout.celo-testnet.org' },
+    default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },
+    etherscan: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },
   },
   testnet: true,
 };
