@@ -7,3 +7,5 @@
 !*.d.ts
 
 tsconfig.json
+
+.turbo/turbo-build.log
