@@ -7,10 +7,10 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists"
-import { Alfajores, Mainnet } from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
-  [Alfajores, Mainnet],
+  [Alfajores, Celo],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
 );
 

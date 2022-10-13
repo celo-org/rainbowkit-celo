@@ -1,6 +1,6 @@
 import { Chain } from '@rainbow-me/rainbowkit';
 
-const Mainnet: Chain = {
+const Celo: Chain = {
   id: 42220,
   name: 'Celo Mainnet',
   network: 'Celo Mainnet',
@@ -21,4 +21,4 @@ const Mainnet: Chain = {
   testnet: false,
 };
 
-export default Mainnet;
+export default Celo;

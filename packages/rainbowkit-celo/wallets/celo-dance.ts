@@ -3,14 +3,14 @@ import {
   getWalletConnectConnector,
   Wallet,
 } from "@rainbow-me/rainbowkit";
-import { Alfajores, Baklava, Mainnet } from "../chains";
+import { Alfajores, Baklava, Celo } from "../chains";
 
 export interface CeloDanceOptions {
   chains: Chain[];
 }
 
 export const CeloDance = ({
-  chains = [Alfajores, Baklava, Mainnet],
+  chains = [Alfajores, Baklava, Celo],
 }: CeloDanceOptions): Wallet => ({
   id: "celo-dance",
   name: "Celo Dance",

@@ -1,14 +1,14 @@
 import { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { InjectedConnector } from "wagmi/connectors/injected";
 
-import { Baklava, Mainnet } from "../chains";
+import { Baklava, Celo } from "../chains";
 
 export interface CeloExtensionOptions {
   chains: Chain[];
 }
 
 export const CeloExtension = ({
-  chains = [Mainnet, Baklava],
+  chains = [Celo, Baklava],
 }: CeloExtensionOptions): Wallet => {
   const isCeloWalletInjected =
     // @ts-ignore

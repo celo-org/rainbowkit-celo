@@ -1,14 +1,14 @@
 import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
-import { Alfajores, Baklava, Mainnet } from "../chains";
+import { Alfajores, Baklava, Celo } from "../chains";
 
 export interface ValoraOptions {
   chains: Chain[];
 }
 
 export const Valora = ({
-  chains = [Alfajores, Baklava, Mainnet],
+  chains = [Alfajores, Baklava, Celo],
 }: ValoraOptions): Wallet => ({
   id: "valora",
   name: "Valora",

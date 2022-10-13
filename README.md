@@ -26,10 +26,10 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { Valora, CeloWallet, CeloDance } from "@celo/rainbowkit-celo/wallets";
 
 // Import CELO chain information
-import { Alfajores, Mainnet } from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
-  [Alfajores, Mainnet],
+  [Alfajores, Celo],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
 );
 

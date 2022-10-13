@@ -11,6 +11,12 @@
   align-items: center;
 }
 
+.install {
+  margin: 10px;
+  background-color: lightgray;
+  padding: 8px;
+}
+
 .footer {
   display: flex;
   flex: 1;
@@ -31,9 +37,21 @@
   width: 45rem;
   max-width: 90vw;
   overflow: auto;
+height: 400px;
+
   max-height: 70vh;
   margin: 0 5px 10px 5px;
 
+}
+
+.link {
+  font-weight: bold;
+  padding: 4px;
+  margin: 4px;
+}
+
+.link:hover {
+  background-color: lightpink;
 }
 
 .grid {

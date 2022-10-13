@@ -1,14 +1,14 @@
 import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
-import { Alfajores, Baklava, Mainnet } from "../chains";
+import { Alfajores, Baklava, Celo } from "../chains";
 
 export interface CeloWalletOptions {
   chains: Chain[];
 }
 
 export const CeloWallet = ({
-  chains = [Alfajores, Baklava, Mainnet],
+  chains = [Alfajores, Baklava, Celo],
 }: CeloWalletOptions): Wallet => ({
   id: "celo-wallet",
   name: "Celo Wallet",

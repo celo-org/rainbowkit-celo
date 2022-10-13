@@ -1,8 +1,13 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0",
   "description": "Quickly Setup RainbowKit for Celo",
+  "homepage": "https://rainbowkit-with-celo.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/celo-org/rainbowkit-celo.git"
+  },
   "main": "./index.js",
   "types": "./index.d.ts",
   "type": "module",
@@ -16,8 +21,10 @@
     "blockchain"
   ],
   "scripts": {
+    "prepublish": "\\cp ../../readme.md ./README.md",
     "lint": "eslint *.ts*",
-    "build": "tsc -b --clean"
+    "clean": "tsc -b --clean",
+    "build": "tsc -b"
     },
   "peerDependencies": {
     "@rainbow-me/rainbowkit": "^0.5.0",

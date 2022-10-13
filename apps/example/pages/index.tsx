@@ -8,10 +8,10 @@ const code = `import { RainbowKitProvider, ConnectButton } from "@rainbow-me/rai
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists"
-import { Alfajores, Mainnet } from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
-  [Alfajores, Mainnet],
+  [Alfajores, Celo],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
 );
 
@@ -61,8 +61,19 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <h2 className={styles.title}>Celo 🌈 RainbowKit</h2>
-        <Demo />
         <ConnectButton />
+        <Demo />
+        <h3>Install As a Package</h3>
+        <code className={styles.install}>yarn add @celo/rainbowkit-celo</code>
+        <h3>Or copy from source files</h3>
+        <a target="_blank" rel="noopener noreferrer" className={styles.link}
+            href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/chains">
+          Chains
+        </a>
+        <a target="_blank" rel="noopener noreferrer" className={styles.link}
+            href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets">
+          Wallets
+        </a>
       </main>
 
       <footer className={styles.footer}>
