@@ -15,7 +15,7 @@ const Celo: Chain = {
     default: 'https://forno.celo.org',
   },
   blockExplorers: {
-    default: { name: 'BlockScout', url: 'https://explorer.celo.org/mainnet' },
+    default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/mainnet' },
     etherscan: { name: 'CeloScan', url: 'https://celoscan.io' },
   },
   testnet: false,

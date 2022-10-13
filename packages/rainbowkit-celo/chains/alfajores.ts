@@ -15,7 +15,7 @@ const Alfajores: Chain = {
     default: 'https://alfajores-forno.celo-testnet.org',
   },
   blockExplorers: {
-    default: { name: 'BlockScout', url: 'https://explorer.celo.org/alfajores' },
+    default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/alfajores' },
     etherscan: { name: 'CeloScan', url: 'https://alfajores.celoscan.io/' },
   },
   testnet: true,
