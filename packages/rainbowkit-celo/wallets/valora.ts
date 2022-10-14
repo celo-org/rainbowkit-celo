@@ -35,7 +35,8 @@ export const Valora = ({
       const { uri } = (await connector.getProvider()).connector;
       return isAndroid()
         ? uri
-        : `https://valoraapp.com/wc?uri=${encodeURIComponent(uri)}`;
+        : // ideally this would use the WalletConnect registry, but this will do for now
+          `https://valoraapp.com/wc?uri=${encodeURIComponent(uri)}`;
     }
     return {
       connector,
