@@ -3,6 +3,13 @@ import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
 import { Alfajores, Baklava, Celo } from "../chains";
 
+// rainbowkit utils has it but doesn't export it :/
+function isAndroid(): boolean {
+  return (
+    typeof navigator !== "undefined" && /android/i.test(navigator.userAgent)
+  );
+}
+
 export interface ValoraOptions {
   chains: Chain[];
 }
@@ -25,8 +32,11 @@ export const Valora = ({
       chains,
     });
     async function getUri() {
-      const provider = await connector.getProvider()
-      return provider.connector.uri
+      const { uri } = (await connector.getProvider()).connector;
+      return isAndroid()
+        ? uri
+        : // ideally this would use the WalletConnect registry, but this will do for now
+          `https://valoraapp.com/wc?uri=${encodeURIComponent(uri)}`;
     }
     return {
       connector,
