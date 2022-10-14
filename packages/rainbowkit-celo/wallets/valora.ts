@@ -4,7 +4,7 @@ import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 import { Alfajores, Baklava, Celo } from "../chains";
 
 // rainbowkit utils has it but doesn't export it :/
-export function isAndroid(): boolean {
+function isAndroid(): boolean {
   return (
     typeof navigator !== "undefined" && /android/i.test(navigator.userAgent)
   );
