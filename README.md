@@ -19,6 +19,13 @@ import {
   RainbowKitProvider,
   wallet,
 } from "@rainbow-me/rainbowkit";
+import { injectedWallet,
+  rainbowWallet,
+  metaMaskWallet,
+  coinbaseWallet, 
+  omniWallet, 
+  walletConnectWallet 
+} from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
@@ -40,8 +47,8 @@ const connectors = connectorsForWallets([
       Valora({ chains }),
       CeloWallet({ chains }),
       CeloDance({ chains }),
-      wallet.steak({ chains }),
-      wallet.walletConnect({ chains }),
+      omniWallet({ chains }),
+      walletConnectWallet({ chains }),
     ],
   },
 ]);
