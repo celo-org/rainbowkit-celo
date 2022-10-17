@@ -1,4 +1,10 @@
-import { connectorsForWallets,  wallet } from "@rainbow-me/rainbowkit";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
+import { 
+  metaMaskWallet,
+  omniWallet, 
+  walletConnectWallet,
+  ledgerWallet
+} from '@rainbow-me/rainbowkit/wallets';
 import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
 
 import type { Chain } from "@rainbow-me/rainbowkit";
@@ -15,10 +21,10 @@ export default function connectors({chains}: {chains: Chain[]}) {
     },
     { groupName: "Supports Celo",
       wallets: [
-        wallet.metaMask({chains}),
-        wallet.steak({ chains }),
-        wallet.ledger({chains}),
-        wallet.walletConnect({ chains }),
+        metaMaskWallet({chains}),
+        omniWallet({ chains }),
+        ledgerWallet({chains}),
+        walletConnectWallet({ chains }),
       ]
     }
   ])
