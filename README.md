@@ -16,13 +16,10 @@ This package has `@rainbow-me/rainbowkit` as a peer dependency and expect it to 
 ```ts
 import {
   connectorsForWallets,
-  RainbowKitProvider,
-  wallet,
+  RainbowKitProvider
 } from "@rainbow-me/rainbowkit";
-import { injectedWallet,
-  rainbowWallet,
-  metaMaskWallet,
-  coinbaseWallet, 
+import { 
+  metaMaskWallet, 
   omniWallet, 
   walletConnectWallet 
 } from '@rainbow-me/rainbowkit/wallets';
@@ -47,6 +44,7 @@ const connectors = connectorsForWallets([
       Valora({ chains }),
       CeloWallet({ chains }),
       CeloDance({ chains }),
+      metaMaskWallet({ chains }),
       omniWallet({ chains }),
       walletConnectWallet({ chains }),
     ],
