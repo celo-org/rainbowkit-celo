@@ -16,9 +16,13 @@ This package has `@rainbow-me/rainbowkit` as a peer dependency and expect it to 
 ```ts
 import {
   connectorsForWallets,
-  RainbowKitProvider,
-  wallet,
+  RainbowKitProvider
 } from "@rainbow-me/rainbowkit";
+import { 
+  metaMaskWallet, 
+  omniWallet, 
+  walletConnectWallet 
+} from '@rainbow-me/rainbowkit/wallets';
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
@@ -40,8 +44,9 @@ const connectors = connectorsForWallets([
       Valora({ chains }),
       CeloWallet({ chains }),
       CeloDance({ chains }),
-      wallet.steak({ chains }),
-      wallet.walletConnect({ chains }),
+      metaMaskWallet({ chains }),
+      omniWallet({ chains }),
+      walletConnectWallet({ chains }),
     ],
   },
 ]);
