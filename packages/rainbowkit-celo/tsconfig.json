@@ -9,7 +9,6 @@
     "isolatedModules": true,
     "preserveSymlinks": true,
     "declaration": true,
-    "declarationDir": "dist",
     "jsx": "preserve",
     "skipLibCheck": true,
     "strict": true,
