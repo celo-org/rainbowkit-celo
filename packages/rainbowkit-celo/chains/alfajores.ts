@@ -18,6 +18,10 @@ const Alfajores: Chain = {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/alfajores' },
     etherscan: { name: 'CeloScan', url: 'https://alfajores.celoscan.io/' },
   },
+  multicall: {
+    address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+    blockCreated: 14569001
+  },
   testnet: true,
 };
 
