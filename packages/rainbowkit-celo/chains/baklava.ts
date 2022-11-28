@@ -18,10 +18,6 @@ const Baklava: Chain = {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },
     etherscan: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },
   },
-  multicall: {
-    address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-    blockCreated: 13112599
-  },
   testnet: true,
 };
 
