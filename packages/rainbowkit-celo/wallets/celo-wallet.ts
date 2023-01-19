@@ -13,7 +13,7 @@ export const CeloWallet = ({
   id: "celo-wallet",
   name: "Celo Wallet",
   iconUrl:
-    "https://rainbowkit-with-celo.vercel.app/icons/alfajores.svg",
+    "https://rainbowkit-with-celo.vercel.app/icons/mono.svg",
   iconBackground: "#FFF",
   createConnector: () => {
     const connector = getWalletConnectConnector({
