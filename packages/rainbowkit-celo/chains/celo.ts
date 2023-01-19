@@ -4,7 +4,7 @@ const Celo: Chain = {
   id: 42220,
   name: 'Celo Mainnet',
   network: 'Celo Mainnet',
-  iconUrl: 'https://reserve.mento.org/assets/tokens/CELO.svg',
+  iconUrl: 'https://rainbowkit-with-celo.vercel.app/icons/celo.svg',
   iconBackground: '#fff',
   nativeCurrency: {
     decimals: 18,

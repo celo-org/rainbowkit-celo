@@ -4,7 +4,7 @@ const Baklava: Chain = {
   id: 62320,
   name: 'Baklava',
   network: 'Baklava Testnet',
-  iconUrl: 'https://reserve.mento.org/assets/tokens/CELO.svg',
+  iconUrl: 'https://rainbowkit-with-celo.vercel.app/icons/baklava.svg',
   iconBackground: '#fff',
   nativeCurrency: {
     decimals: 18,

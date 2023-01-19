@@ -4,7 +4,7 @@ const Alfajores: Chain = {
   id: 44787,
   name: 'Alfajores',
   network: 'Alfajores Testnet',
-  iconUrl: 'https://reserve.mento.org/assets/tokens/CELO.svg',
+  iconUrl: 'https://rainbowkit-with-celo.vercel.app/icons/alfajores.svg',
   iconBackground: '#fff',
   nativeCurrency: {
     decimals: 18,
