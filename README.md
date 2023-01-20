@@ -11,6 +11,14 @@ npm install @celo/rainbowkit-celo
 
 This package has `@rainbow-me/rainbowkit` as a peer dependency and expect it to be installed too. Follow [their instructions](https://www.rainbowkit.com/docs/installation) if that's not done yet.
 
+
+### A note on version compatibility
+
+After version 0.8.0 inclusive, this package has the most significant digit match the version of @rainbow-me/rainbowkit it is compatible with.
+
+IE for `@rainbow-me/rainbowkit@0.8.1` use `@celo/rainbow-kit@0.8.0`
+
+
 ## Usage
 
 ```ts
