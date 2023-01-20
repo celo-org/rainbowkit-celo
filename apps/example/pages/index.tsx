@@ -71,7 +71,7 @@ const Home: NextPage = () => {
         <ConnectButton />
         <Demo />
         <h3>Install As a Package</h3>
-        <code className={styles.install}>yarn add @celo/rainbowkit-celo</code>
+        <code className={styles.install}>yarn add @celo/rainbowkit-celo @rainbow-me/rainbowkit wagmi ethers</code>
         <h3>Or copy from source files</h3>
         <a target="_blank" rel="noopener noreferrer" className={styles.link}
             href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/chains">
