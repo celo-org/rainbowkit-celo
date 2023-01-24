@@ -10,9 +10,16 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists"
 import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
+// (OLD) For rainbowkit < 0.8.0 && wagmi <= 0.8.x
 const { chains, provider } = configureChains(
   [Alfajores, Celo],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
+);
+
+// (NEW) rainbow>=0.8.1 && wagmi >= 0.9.0
+const { chains, provider } = configureChains(
+  [Alfajores, Celo],
+  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 );
 
 const connectors = celoGroups({chains})

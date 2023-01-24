@@ -12,15 +12,19 @@ const Alfajores: Chain = {
     symbol: 'A-CELO',
   },
   rpcUrls: {
-    default: 'https://alfajores-forno.celo-testnet.org',
+    default: {
+        http: ['https://alfajores-forno.celo-testnet.org']
+      },
   },
   blockExplorers: {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/alfajores' },
     etherscan: { name: 'CeloScan', url: 'https://alfajores.celoscan.io/' },
   },
-  multicall: {
-    address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-    blockCreated: 14569001
+  contracts: {
+    multicall3: {
+      address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+      blockCreated: 14569001
+    }
   },
   testnet: true,
 };

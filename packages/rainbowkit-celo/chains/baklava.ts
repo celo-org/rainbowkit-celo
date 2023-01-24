@@ -12,7 +12,10 @@ const Baklava: Chain = {
     symbol: 'B-CELO',
   },
   rpcUrls: {
-    default: 'https://baklava-forno.celo-testnet.org',
+    default:  {
+      http: ['https://baklava-forno.celo-testnet.org'],
+    }
+
   },
   blockExplorers: {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },

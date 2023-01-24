@@ -11,7 +11,7 @@ import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
   [Alfajores, Celo],
-  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
+  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 );
 
 
