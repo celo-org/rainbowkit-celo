@@ -1,7 +1,7 @@
 import { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { InjectedConnector } from "wagmi/connectors/injected";
 
-import { Baklava, Celo } from "../chains";
+import { Baklava, Celo } from "@celo/rainbowkit-celo/chains";
 
 export interface CeloExtensionOptions {
   chains: Chain[];

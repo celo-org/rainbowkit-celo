@@ -10,6 +10,14 @@
   },
   "main": "./index.js",
   "types": "./index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./wallets": "./wallets/index.js",
+    "./chains": "./chains/index.js",
+    "./chains/celo": "./chains/celo.js",
+    "./chains/alfajores": "./chains/alfajores.js",
+    "./chains/baklava": "./chains/baklava.js"
+  },
   "type": "module",
   "sideEffects": false,
   "license": "MIT",

@@ -3,7 +3,7 @@ import {
   getWalletConnectConnector,
   Wallet,
 } from "@rainbow-me/rainbowkit";
-import { Alfajores, Baklava, Celo } from "../chains";
+import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
 
 export interface CeloTerminalOptions {
   chains: Chain[];

@@ -1,7 +1,7 @@
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
-import { 
+import {
   metaMaskWallet,
-  omniWallet, 
+  omniWallet,
   walletConnectWallet,
   ledgerWallet
 } from '@rainbow-me/rainbowkit/wallets';
