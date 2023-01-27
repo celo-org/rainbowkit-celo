@@ -11,13 +11,34 @@
   "main": "./index.js",
   "types": "./index.d.ts",
   "exports": {
-    ".": "./index.js",
-    "./wallets": "./wallets/index.js",
-    "./lists": "./lists/index.js",
-    "./chains": "./chains/index.js",
-    "./chains/celo": "./chains/celo.js",
-    "./chains/alfajores": "./chains/alfajores.js",
-    "./chains/baklava": "./chains/baklava.js"
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js"
+    },
+    "./wallets": {
+      "types": "./wallets/index.d.ts",
+      "import": "./wallets/index.js"
+    },
+    "./lists": {
+      "types": "./lists/index.d.ts",
+      "import": "./lists/index.js"
+    },
+    "./chains": {
+      "types": "./chains/index.d.ts",
+      "import": "./chains/index.js"
+    },
+    "./chains/celo": {
+      "types": "./chains/celo.d.ts",
+      "import": "./chains/celo.js"
+    },
+    "./chains/alfajores": {
+      "types": "./chains/alfajores.d.ts",
+      "import": "./chains/alfajores.js"
+    },
+    "./chains/baklava": {
+      "types": "./chains/baklava.d.ts",
+      "import": "./chains/baklava.js"
+    }
   },
   "type": "module",
   "sideEffects": false,
