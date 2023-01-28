@@ -13,6 +13,12 @@ const Celo: Chain = {
   },
   rpcUrls: {
     default: {http: ['https://forno.celo.org']},
+    infura: {
+      http: ["https://celo-mainnet.infura.io/v3/"]
+    },
+    public: {
+      http: ['https://forno.celo.org']
+    },
   },
   blockExplorers: {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/mainnet' },
