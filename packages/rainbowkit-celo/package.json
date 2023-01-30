@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "0.8.1-beta.1",
+  "version": "0.8.1-beta.3",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
@@ -52,6 +52,7 @@
   ],
   "scripts": {
     "prepublish": "\\cp ../../readme.md ./README.md",
+    "prepack": "yarn build",
     "lint": "eslint *.ts*",
     "clean": "tsc -b --clean",
     "build": "tsc -b"
