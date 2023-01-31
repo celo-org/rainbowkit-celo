@@ -15,14 +15,6 @@
       "types": "./index.d.ts",
       "import": "./index.js"
     },
-    "./wallets": {
-      "types": "./wallets/index.d.ts",
-      "import": "./wallets/index.js"
-    },
-    "./lists": {
-      "types": "./lists/index.d.ts",
-      "import": "./lists/index.js"
-    },
     "./chains": {
       "types": "./chains/index.d.ts",
       "import": "./chains/index.js"
@@ -38,6 +30,26 @@
     "./chains/baklava": {
       "types": "./chains/baklava.d.ts",
       "import": "./chains/baklava.js"
+    },
+    "./lists": {
+      "types": "./lists/index.d.ts",
+      "import": "./lists/index.js"
+    },
+    "./wallets": {
+      "types": "./wallets/index.d.ts",
+      "import": "./wallets/index.js"
+    },
+    "./wallets/celo-terminal": {
+      "types": "./wallets/celo-terminal.d.ts",
+      "import": "./wallets/celo-terminal.js"
+    },
+    "./wallets/celo-wallet": {
+      "types": "./wallets/celo-wallet.d.ts",
+      "import": "./wallets/celo-wallet.js"
+    },
+    "./wallets/valora": {
+      "types": "./wallets/valora.d.ts",
+      "import": "./wallets/valora.js"
     }
   },
   "type": "module",
