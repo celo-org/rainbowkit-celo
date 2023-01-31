@@ -37,10 +37,9 @@
   width: 45rem;
   max-width: 90vw;
   overflow: auto;
-height: 400px;
-
+  height: 400px;
   max-height: 70vh;
-  margin: 0 5px 10px 5px;
+  margin: 15px 5px 20px 5px;
 
 }
 
@@ -50,6 +49,11 @@ height: 400px;
   margin: 4px;
 }
 
+.inlineLink {
+  text-decoration: underline;
+}
+
+.inlineLink:hover,
 .link:hover {
   background-color: lightpink;
 }

@@ -1,3 +1,3 @@
-export { default as Alfajores } from './alfajores';
-export { default as Celo } from './celo';
-export { default as Baklava } from './baklava';
+export { default as Alfajores } from './alfajores.js';
+export { default as Celo } from './celo.js';
+export { default as Baklava } from './baklava.js';

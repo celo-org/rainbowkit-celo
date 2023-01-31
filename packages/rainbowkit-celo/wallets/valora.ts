@@ -1,7 +1,7 @@
 import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
-import { Alfajores, Baklava, Celo } from "../chains";
+import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
 
 // rainbowkit utils has it but doesn't export it :/
 function isAndroid(): boolean {
