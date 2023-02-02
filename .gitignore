@@ -35,3 +35,6 @@ yarn-error.log*
 packages/rainbowkit-celo/**/*d.ts
 packages/rainbowkit-celo/**/*.js
 README.md
+*.js
+packages/ledger-ethers-signer/src/*.d.ts
+packages/ledger-ethers-signer/src/**/*d.ts
