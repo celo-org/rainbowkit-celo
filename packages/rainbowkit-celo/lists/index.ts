@@ -3,13 +3,14 @@ import {
   metaMaskWallet,
   omniWallet,
   walletConnectWallet,
+  coinbaseWallet,
 } from '@rainbow-me/rainbowkit/wallets';
 import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
 
 import type { Chain } from "@rainbow-me/rainbowkit";
 
 
-export default function connectors({chains}: {chains: Chain[]}) {
+export default function connectors({chains, appName}: {chains: Chain[], appName?: string}) {
   return connectorsForWallets([
     {
       groupName: "Celo Only",
@@ -23,7 +24,7 @@ export default function connectors({chains}: {chains: Chain[]}) {
         metaMaskWallet({chains}),
         omniWallet({ chains }),
         walletConnectWallet({ chains }),
-      ]
+      ].concat(appName ? [coinbaseWallet({appName, chains })]: [])
     }
   ])
 }

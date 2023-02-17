@@ -22,7 +22,7 @@ const { chains, provider } = configureChains(
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 );
 
-const connectors = celoGroups({chains})
+const connectors = celoGroups({chains, appName: typeof document === "object" && document.title || "Sample App"})
 
 const wagmiClient = createClient({
   autoConnect: true,
