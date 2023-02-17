@@ -15,7 +15,7 @@ const { chains, provider } = configureChains(
 );
 
 
-const connectors = celoGroups({chains})
+const connectors = celoGroups({chains, appName: typeof document === "object" && document.title || "Sample App"})
 
 const wagmiClient = createClient({
   autoConnect: true,
