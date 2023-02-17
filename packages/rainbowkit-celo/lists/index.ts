@@ -3,7 +3,6 @@ import {
   metaMaskWallet,
   omniWallet,
   walletConnectWallet,
-  ledgerWallet
 } from '@rainbow-me/rainbowkit/wallets';
 import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
 
@@ -23,7 +22,6 @@ export default function connectors({chains}: {chains: Chain[]}) {
       wallets: [
         metaMaskWallet({chains}),
         omniWallet({ chains }),
-        ledgerWallet({chains}),
         walletConnectWallet({ chains }),
       ]
     }
