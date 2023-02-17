@@ -14,8 +14,10 @@ const Baklava: Chain = {
   rpcUrls: {
     default:  {
       http: ['https://baklava-forno.celo-testnet.org'],
+    },
+    public: {
+      http: ['https://baklava-forno.celo-testnet.org'],
     }
-
   },
   blockExplorers: {
     default: { name: 'Celo Explorer', url: 'https://explorer.celo.org/baklava' },
