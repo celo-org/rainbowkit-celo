@@ -69,11 +69,13 @@
     "clean": "tsc -b --clean",
     "build": "tsc -b"
     },
+  "dependencies": {
+    "@wagmi/chains": ">=0.2.1"
+  },
   "peerDependencies": {
     "@rainbow-me/rainbowkit": ">=0.11.0",
     "ethers": ">=5.5.1",
-    "wagmi": "0.11.x",
-    "@wagmi/chains": ">=0.2.1"
+    "wagmi": "0.11.x"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
