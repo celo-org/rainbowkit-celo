@@ -47,6 +47,10 @@
       "types": "./wallets/celo-wallet.d.ts",
       "import": "./wallets/celo-wallet.js"
     },
+    "./wallets/celo-extension": {
+      "types": "./wallets/celo-extension.d.ts",
+      "import": "./wallets/celo-extension.js"
+    },
     "./wallets/valora": {
       "types": "./wallets/valora.d.ts",
       "import": "./wallets/valora.js"
@@ -68,7 +72,7 @@
     "lint": "eslint *.ts*",
     "clean": "tsc -b --clean",
     "build": "tsc -b"
-    },
+  },
   "dependencies": {
     "@wagmi/chains": ">=0.2.1"
   },
