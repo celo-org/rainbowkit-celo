@@ -31,6 +31,10 @@
       "types": "./chains/baklava.d.ts",
       "import": "./chains/baklava.js"
     },
+    "./chains/cannoli": {
+      "types": "./chains/cannoli.d.ts",
+      "import": "./chains/cannoli.js"
+    },
     "./lists": {
       "types": "./lists/index.d.ts",
       "import": "./lists/index.js"
