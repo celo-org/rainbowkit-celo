@@ -15,26 +15,43 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+#      - name: Set Node.js 16.x
+#        uses: actions/setup-node@v3
+#        with:
+#          node-version: 16.x
+#          registry-url: https://registry.npmjs.org/
+#          scope:  "@celo"
+#
+#      - name: Run install
+#        uses: borales/actions-yarn@v4
+#        with:
+#          cmd: install # will run `yarn install` command
+#
+#      - name: Build production bundle
+#        uses: borales/actions-yarn@v4
+#        with:
+#          cmd: build # will run `yarn build` command
+#
+#      - run: yarn publish packages/rainbowkit-celo --access-public
+#        env:
+#          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Setup tmate session
+#        if: ${{ failure() }}
+#        uses: mxschmitt/action-tmate@v3
+#
+
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16
           registry-url: https://registry.npmjs.org/
           scope:  "@celo"
 
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` command
-
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn build` command
-
-      - run: yarn publish packages/rainbowkit-celo --access-public
+      - run: yarn install
+      - run: yarn build
+      - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Setup tmate session
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
+
