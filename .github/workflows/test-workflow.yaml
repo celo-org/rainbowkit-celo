@@ -32,6 +32,6 @@ jobs:
         with:
           cmd: build # will run `yarn build` command
 
-      - run: yarn --cwd ./packages/rainbowkit-celo publish
+      - run: yarn publish packages/rainbowkit-celo
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
