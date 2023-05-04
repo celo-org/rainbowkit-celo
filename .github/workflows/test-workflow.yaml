@@ -26,13 +26,11 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build # will run `yarn build` command
-          dir: packages/rainbowkit-celo
 
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
           cmd: install # will run `yarn install` command
-          dir: packages/rainbowkit-celo
 
       - run: yarn --cwd ./packages/rainbowkit-celo publish
         env:
