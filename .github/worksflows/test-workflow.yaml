@@ -1,0 +1,23 @@
+on:
+  release:
+    types: [published]
+  pull_request:
+
+jobs:
+  Npm-publish:
+    runs-on: ubuntu-latest
+    permissions: # Must change the job token permissions to use JWT auth
+#      contents: read
+#      id-token: write
+#      security-events: write
+
+
+    steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+              node-version: 12
+        - run: npm ci
+        - run: npm test
+
+
