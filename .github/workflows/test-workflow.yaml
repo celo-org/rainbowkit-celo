@@ -19,8 +19,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          registry-url: 'https://registry.npmjs.org'
-          scope:  '@celo'
+#          registry-url: 'https://registry.npmjs.org'
+          registry-url: 'https://npm.pkg.github.com'
+          scope:  "@celo"
 
       - name: Run install
         uses: borales/actions-yarn@v4
