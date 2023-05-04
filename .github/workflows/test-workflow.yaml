@@ -9,9 +9,6 @@ jobs:
     uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
     with:
       npm-version: 1.6
-
-      workload-id-provider: ${{  needs.set-docker-vars.outputs.workload-id-provider }}
-      service-account: ${{ needs.set-docker-vars.outputs.service-account }}
       package-dir: "packages/rainbowkit"
       akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
       akeyless-github-access-id: p-kf9vjzruht6l
