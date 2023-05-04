@@ -44,7 +44,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-          scope:  "@celo"
 
       - run: yarn install
       - run: yarn build
