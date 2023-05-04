@@ -2,7 +2,9 @@ name: 'NPM Publish'
 on:
   release:
     types: [published]
+  pull_request:
 
+jobs:
   NPM Publish:
     uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
     with:
