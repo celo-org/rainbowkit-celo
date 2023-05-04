@@ -1,3 +1,4 @@
+name: 'Akeyless Terraform'
 on:
   release:
     types: [published]
