@@ -35,3 +35,6 @@ jobs:
       - run: yarn publish packages/rainbowkit-celo
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
