@@ -28,8 +28,7 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: build # will run `yarn build` command
-      - run: npm ci
-      - run: npm publish --access public
+      - run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
