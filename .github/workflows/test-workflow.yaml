@@ -6,6 +6,10 @@ on:
 
 jobs:
   NPM-Publish:
+    permissions: # Must change the job token permissions to use JWT auth
+      contents: read
+      id-token: write
+
     uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
     with:
       npm-version: 1.6
