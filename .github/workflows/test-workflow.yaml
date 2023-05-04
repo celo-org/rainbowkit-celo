@@ -19,8 +19,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-#          registry-url: 'https://registry.npmjs.org'
-          registry-url: 'https://npm.pkg.github.com'
+          registry-url: https://registry.npmjs.org/
           scope:  "@celo"
 
       - name: Run install
@@ -33,7 +32,7 @@ jobs:
         with:
           cmd: build # will run `yarn build` command
 
-      - run: yarn publish packages/rainbowkit-celo
+      - run: yarn publish packages/rainbowkit-celo --access-public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Setup tmate session
