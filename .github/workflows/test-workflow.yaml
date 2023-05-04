@@ -48,7 +48,7 @@ jobs:
 
       - run: yarn install
       - run: yarn build
-      - run: yarn publish
+      - run: yarn publish packages/rainbowkit-celo
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Setup tmate session
