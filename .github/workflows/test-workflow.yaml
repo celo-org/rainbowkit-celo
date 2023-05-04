@@ -12,7 +12,7 @@ jobs:
 
     uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
     with:
-      npm-version: 1.6
+      npm-version: 16
       package-dir: "packages/rainbowkit"
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
