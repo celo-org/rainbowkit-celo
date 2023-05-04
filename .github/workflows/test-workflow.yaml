@@ -1,4 +1,4 @@
-name: 'Akeyless Terraform'
+name: 'NPM Publish'
 on:
   release:
     types: [published]
