@@ -22,15 +22,15 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           scope:  '@celo'
 
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build # will run `yarn build` command
-
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
           cmd: install # will run `yarn install` command
+
+      - name: Build production bundle
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build # will run `yarn build` command
 
       - run: yarn --cwd ./packages/rainbowkit-celo publish
         env:
