@@ -7,7 +7,7 @@ on:
 jobs:
   Npm-publish:
     runs-on: ubuntu-latest
-    permissions: # Must change the job token permissions to use JWT auth
+    #permissions: # Must change the job token permissions to use JWT auth
 #      contents: read
 #      id-token: write
 #      security-events: write
