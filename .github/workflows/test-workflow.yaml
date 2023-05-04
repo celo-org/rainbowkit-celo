@@ -3,19 +3,14 @@ on:
   release:
     types: [published]
 
-jobs:
-  Npm-publish:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+  NPM Publish:
+    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
+    with:
+      npm-version: 1.6
 
-      - run: yarn install
-      - run: yarn build
-      - run: cd packages/rainbowkit-celo && npm publish 
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
+      workload-id-provider: ${{  needs.set-docker-vars.outputs.workload-id-provider }}
+      service-account: ${{ needs.set-docker-vars.outputs.service-account }}
+      package-dir: "packages/rainbowkit"
+      akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
+      akeyless-github-access-id: p-kf9vjzruht6l
+      akeyless-token-path: /static-secrets/apps-payments-circle
