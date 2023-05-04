@@ -13,7 +13,7 @@ jobs:
     uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.0
     with:
       npm-version: 16
-      package-dir: "packages/rainbowkit"
+      package-dir: "packages/rainbowkit-celo"
     secrets:
       npm-token: ${{ secrets.NPM_TOKEN }}
       #akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
