@@ -1,0 +1,21 @@
+name: 'NPM Publish'
+on:
+  release:
+    types: [published]
+#  pull_request:
+
+jobs:
+  NPM-Publish:
+    permissions: # Must change the job token permissions to use JWT auth
+      contents: read
+      id-token: write
+
+    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.1
+    with:
+      node-version: 16
+      package-dir: "packages/rainbowkit-celo"
+    secrets:
+      npm-token: ${{ secrets.NPM_TOKEN }}
+      #akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
+      #akeyless-github-access-id: p-kf9vjzruht6l
+      #akeyless-token-path: /static-secrets/apps-payments-circle
