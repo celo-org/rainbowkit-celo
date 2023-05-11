@@ -4,37 +4,33 @@ import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
-const code = `import { RainbowKitProvider, ConnectButton } from "@rainbow-me/rainbowkit";
-import { configureChains, createClient, WagmiConfig } from "wagmi";
+const code = `// for 1.0.0
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains, createConfig, WagmiConfig,  } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists"
-import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
+import "@rainbow-me/rainbowkit/styles.css";
 
-// (OLD) For rainbowkit < 0.8.0 && wagmi <= 0.8.x
-const { chains, provider } = configureChains(
-  [Alfajores, Celo],
-  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default }) })]
-);
+const projectId = "your-wallet-connnect-project-id" // get one at https://cloud.walletconnect.com/app
 
-// (NEW) rainbow>=0.8.1 && wagmi >= 0.9.0
-const { chains, provider } = configureChains(
-  [Alfajores, Celo],
+const connectors = celoGroups({chains, projectId, appName: typeof document === "object" && document.title || "Your App Name"})
+
+const { chains, publicClient } = configureChains(
+  [Alfajores, Celo, Cannoli],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 );
-
-const connectors = celoGroups({chains, appName: typeof document === "object" && document.title || "Sample App"})
-
-const wagmiClient = createClient({
+const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  provider,
+  publicClient: publicClient,
 });
 
 export default function Wrap() {
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
-        <YourApp/>
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains} coolMode={true}>
+        <YourApp />
       </RainbowKitProvider>
     </WagmiConfig>
   );
@@ -43,20 +39,15 @@ export default function Wrap() {
 function YourApp() {
   return <ConnectButton />;
 };
-`
+`;
 
 export function Demo() {
-return <div className={styles.code}>
-  <SyntaxHighlighter language="typescript" >
-    {code}
-  </SyntaxHighlighter>
-  </div>
+  return (
+    <div className={styles.code}>
+      <SyntaxHighlighter language="typescript">{code}</SyntaxHighlighter>
+    </div>
+  );
 }
-
-
-export const YourApp = () => {
-  return <ConnectButton />;
-};
 
 const Home: NextPage = () => {
   return (

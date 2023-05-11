@@ -5,12 +5,14 @@ import {
 } from "@rainbow-me/rainbowkit";
 import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
 
-export interface CeloTerminalOptions {
+interface CeloTerminalOptions {
   chains: Chain[];
+  projectId: string;
 }
 
 export const CeloTerminal = ({
   chains = [Alfajores, Baklava, Celo],
+  projectId,
 }: CeloTerminalOptions): Wallet => ({
   id: "celo-terminal",
   name: "Celo Terminal",
@@ -20,6 +22,7 @@ export const CeloTerminal = ({
   createConnector: () => {
     const connector = getWalletConnectConnector({
       chains,
+      projectId,
     });
 
     return {
@@ -30,7 +33,7 @@ export const CeloTerminal = ({
           // Note: This doesn't work. I'll try to have a PR to add deeplinking to CeloTerminal - Nicolas
           return `https://celoterminal.com/wc?uri=${encodeURIComponent(uri)}`;
         },
-      }
+      },
     };
   },
 });

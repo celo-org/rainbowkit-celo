@@ -11,26 +11,24 @@ npm install @celo/rainbowkit-celo
 
 This package has `@rainbow-me/rainbowkit` as a peer dependency and expect it to be installed too. Follow [their instructions](https://www.rainbowkit.com/docs/installation) if that's not done yet.
 
-
 ### A note on version compatibility
 
 After version 0.8.0 inclusive, this package has the most significant digit match the version of @rainbow-me/rainbowkit it is compatible with.
 
 IE for `@rainbow-me/rainbowkit@0.8.1` use `@celo/rainbow-kit@0.8.0`
 
-
 ## Usage
 
 ```ts
 import {
   connectorsForWallets,
-  RainbowKitProvider
+  RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import {
   metaMaskWallet,
   omniWallet,
-  walletConnectWallet
-} from '@rainbow-me/rainbowkit/wallets';
+  walletConnectWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
@@ -42,7 +40,11 @@ import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 
 const { chains, provider } = configureChains(
   [Alfajores, Celo],
-  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
+  [
+    jsonRpcProvider({
+      rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
+    }),
+  ]
 );
 
 // Note for older use with wagmi before 0.9 / rainbowkit before 0.8.1 configure
@@ -73,7 +75,6 @@ const wagmiClient = createClient({
 
 // ... Your exisiting app.
 ```
-
 
 ## Adding wallets to the config
 
