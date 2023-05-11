@@ -31,9 +31,9 @@ export default function connectors({
     {
       groupName: "Supports Celo",
       wallets: [
+        braveWallet({ chains }), // only shows when in brave and  celo chains are configured in brave wallet
         metaMaskWallet({ chains, projectId }),
         safeWallet({ chains }),
-        braveWallet({ chains }),
         omniWallet({ chains, projectId }),
         walletConnectWallet({ chains, projectId }),
       ].concat(appName ? [coinbaseWallet({ appName, chains })] : []),
