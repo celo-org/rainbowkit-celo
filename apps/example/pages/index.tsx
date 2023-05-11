@@ -61,16 +61,33 @@ const Home: NextPage = () => {
         <h2 className={styles.title}>Celo 🌈 RainbowKit</h2>
         <ConnectButton />
         <Demo />
-        <em>Follow the instructions for <a className={styles.inlineLink} href="https://www.rainbowkit.com/docs/installation">installing rainbowkit</a> and...</em>
+        <em>
+          Follow the instructions for{" "}
+          <a
+            className={styles.inlineLink}
+            href="https://www.rainbowkit.com/docs/installation"
+          >
+            installing rainbowkit
+          </a>{" "}
+          and...
+        </em>
         <h3>Install As a Package</h3>
         <code className={styles.install}>yarn add @celo/rainbowkit-celo</code>
         <h3>Or copy from source files</h3>
-        <a target="_blank" rel="noopener noreferrer" className={styles.link}
-            href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/chains">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+          href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/chains"
+        >
           Chains
         </a>
-        <a target="_blank" rel="noopener noreferrer" className={styles.link}
-            href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+          href="https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets"
+        >
           Wallets
         </a>
       </main>
@@ -85,7 +102,7 @@ const Home: NextPage = () => {
           💾
         </a>
       </footer>
-      </>
+    </>
   );
 };
 
