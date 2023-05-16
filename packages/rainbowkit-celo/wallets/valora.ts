@@ -1,7 +1,12 @@
 import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
-import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
+import {
+  Alfajores,
+  Baklava,
+  Celo,
+  Cannoli,
+} from "@celo/rainbowkit-celo/chains";
 
 // rainbowkit utils has it but doesn't export it :/
 function isAndroid(): boolean {
@@ -10,12 +15,14 @@ function isAndroid(): boolean {
   );
 }
 
-export interface ValoraOptions {
+interface ValoraOptions {
   chains: Chain[];
+  projectId: string;
 }
 
 export const Valora = ({
-  chains = [Alfajores, Baklava, Celo],
+  chains = [Alfajores, Baklava, Celo, Cannoli],
+  projectId,
 }: ValoraOptions): Wallet => ({
   id: "valora",
   name: "Valora",
@@ -25,11 +32,12 @@ export const Valora = ({
   downloadUrls: {
     android: "https://play.google.com/store/apps/details?id=co.clabs.valora",
     ios: "https://apps.apple.com/app/id1520414263?mt=8",
-    qrCode: "https://valoraapp.com/"
+    qrCode: "https://valoraapp.com/",
   },
   createConnector: () => {
     const connector = getWalletConnectConnector({
       chains,
+      projectId,
     });
     return {
       connector,

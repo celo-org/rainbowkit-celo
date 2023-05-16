@@ -4,27 +4,39 @@ import {
   omniWallet,
   walletConnectWallet,
   coinbaseWallet,
-} from '@rainbow-me/rainbowkit/wallets';
+  safeWallet,
+  braveWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
 
 import type { Chain } from "@rainbow-me/rainbowkit";
 
-
-export default function connectors({chains, appName}: {chains: Chain[], appName?: string}) {
+export default function connectors({
+  chains,
+  appName,
+  projectId,
+}: {
+  chains: Chain[];
+  projectId: string;
+  appName?: string;
+}) {
   return connectorsForWallets([
     {
       groupName: "Celo Only",
       wallets: [
-        Valora({chains}),
-        CeloWallet({chains}),
-      ]
+        Valora({ chains, projectId }),
+        CeloWallet({ chains, projectId }),
+      ],
     },
-    { groupName: "Supports Celo",
+    {
+      groupName: "Supports Celo",
       wallets: [
-        metaMaskWallet({chains}),
-        omniWallet({ chains }),
-        walletConnectWallet({ chains }),
-      ].concat(appName ? [coinbaseWallet({appName, chains })]: [])
-    }
-  ])
+        braveWallet({ chains }), // only shows when in brave and  celo chains are configured in brave wallet
+        metaMaskWallet({ chains, projectId }),
+        safeWallet({ chains }),
+        omniWallet({ chains, projectId }),
+        walletConnectWallet({ chains, projectId }),
+      ].concat(appName ? [coinbaseWallet({ appName, chains })] : []),
+    },
+  ]);
 }
