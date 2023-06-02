@@ -9,26 +9,26 @@ export type TransactionSerializableCIP42<
     chainId: number
     type?: 'cip42'
     feeCurrency?: Address
-    gatewayfeerecipient?: Address,
-    gatewayfee?: TQuantity,
+    gatewayFeeRecipient?: Address,
+    gatewayFee?: TQuantity,
     yParity?: number
   }
 
+  type SerializedCIP42TransactionReturnType = `0x7c${string}`
 
-export function serializeTransaction(tx: TransactionSerializable & TransactionSerializableCIP42,  signature?: Signature): Promise<Address> {
+export function serializeTransaction(tx: TransactionSerializable & TransactionSerializableCIP42, signature?: Signature): Promise<SerializedCIP42TransactionReturnType> {
   // handle celo's feeCurrency Transactions
-  if (tx.feeCurrency) {
+  if (couldBeCIP42(tx)) {
     return serializeCIP42Transaction(tx, signature)
   }
   // handle rest of tx types
   return viemSerializeTransaction(tx, signature)
 }
 
-
 // There shall be a typed transaction with the code 0x7c that has the following format:
-// 0x7c || rlp([chain_id, nonce, max_priority_fee_per_gas, max_fee_per_gas, gas_limit, feecurrency, gatewayfeerecipient, gatewayfee, destination, amount, data, access_list, signature_y_parity, signature_r, signature_s]).
+// 0x7c || rlp([chain_id, nonce, max_priority_fee_per_gas, max_fee_per_gas, gas_limit, feecurrency, gatewayFeeRecipient, gatewayfee, destination, amount, data, access_list, signature_y_parity, signature_r, signature_s]).
 // This will be in addition to the type 0x02 transaction as specified in EIP-1559.
-async function serializeCIP42Transaction(transaction: TransactionSerializableCIP42, signature?: Signature): Promise<Address> {
+async function serializeCIP42Transaction(transaction: TransactionSerializableCIP42, signature?: Signature): Promise<SerializedCIP42TransactionReturnType>  {
   assertTransactionCIP42(transaction)
   const {
     chainId,
@@ -40,8 +40,8 @@ async function serializeCIP42Transaction(transaction: TransactionSerializableCIP
     maxPriorityFeePerGas,
     accessList,
     feeCurrency,
-    gatewayfeerecipient,
-    gatewayfee,
+    gatewayFeeRecipient,
+    gatewayFee,
     data,
   } = transaction
 
@@ -53,8 +53,8 @@ async function serializeCIP42Transaction(transaction: TransactionSerializableCIP
     maxFeePerGas ? toHex(maxFeePerGas) : '0x',
     gas ? toHex(gas) : '0x',
     feeCurrency ?? '0x',
-    gatewayfeerecipient ?? '0x',
-    gatewayfee ? toHex(gatewayfee) : '0x',
+    gatewayFeeRecipient ?? '0x',
+    gatewayFee ? toHex(gatewayFee) : '0x',
     to ?? '0x',
     value ? toHex(value) : '0x',
     data ?? '0x',
@@ -70,17 +70,25 @@ async function serializeCIP42Transaction(transaction: TransactionSerializableCIP
   }
 
   return concatHex([
-    '0x07',
+    '0x7c',
     toRlp(serializedTransaction),
-  ])
+  ]) as SerializedCIP42TransactionReturnType
 }
 
+// process as CIP42 if any of these fields are present realistically gatewayfee is not used but is part of spec
+function couldBeCIP42(tx: TransactionSerializable & TransactionSerializableCIP42) {
+  if (tx.type === 'cip42' || tx.feeCurrency || tx.gatewayFee || tx.gatewayFeeRecipient) {
+    return true
+  }
+  return false
+}
 
 function assertTransactionCIP42(
   transaction: TransactionSerializableCIP42,
 ) {
-  const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to, feeCurrency } =
+  const { chainId, maxPriorityFeePerGas, gasPrice, maxFeePerGas, to, feeCurrency, gatewayFee, gatewayFeeRecipient } =
     transaction
+  // TODO  should this throw for any chain id not one of celo's chains or is that to restrictive?
   if (chainId <= 0) throw new InvalidChainIdError({ chainId })
   if (to && !isAddress(to)) throw new InvalidAddressError({ address: to })
   if (gasPrice)
@@ -96,6 +104,10 @@ function assertTransactionCIP42(
   )
     throw new TipAboveFeeCapError({ maxFeePerGas, maxPriorityFeePerGas })
 
+  if ((gatewayFee && !gatewayFeeRecipient) || (gatewayFeeRecipient && !gatewayFee)) {
+    throw new BaseError('`gatewayFee` and `gatewayFeeRecipient` must be provided together.')
+  }
+
   if (!feeCurrency) {
     throw new BaseError('`feeCurrency` is required for CIP-42 transactions.')
   }
@@ -104,7 +116,7 @@ function assertTransactionCIP42(
 
 
 
-// TODO ask viem team if this can be exported / copied from https://github.com/wagmi-dev/viem/blob/840d3d7411a33ad02c71bd180b53244df91cd779/src/utils/transaction/serializeTransaction.ts
+// TODO ask viem team if these can be exported / copied from https://github.com/wagmi-dev/viem/blob/840d3d7411a33ad02c71bd180b53244df91cd779/src/utils/transaction/serializeTransaction.ts
 type RecursiveArray<T> = T | RecursiveArray<T>[]
 class InvalidStorageKeySizeError extends BaseError {
   override name = 'InvalidStorageKeySizeError'
