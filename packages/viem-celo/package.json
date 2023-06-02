@@ -1,0 +1,26 @@
+{
+  "name": "@celo/viem-tools",
+  "version": "0.1.0",
+  "description": "Sign and Send CIP42 (Fee Currency) TX with viem",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "author": "clabs.co",
+  "license": "MIT",
+  "keywords": [
+    "celo",
+    "dapp",
+    "viem",
+    "crypto",
+    "web3",
+    "EIP2718",
+    "blockchain"
+  ],
+  "private": false,
+  "peerDependencies": {
+    "viem": "^0.3.43"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3",
+    "viem": "^0.3.43"
+  }
+}
