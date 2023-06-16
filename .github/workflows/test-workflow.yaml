@@ -10,7 +10,7 @@ jobs:
       contents: read
       id-token: write
 
-    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.9.1
+    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.10.3
     with:
       node-version: 16
       package-dir: "packages/rainbowkit-celo"
