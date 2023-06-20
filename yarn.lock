@@ -1014,7 +1014,7 @@
   resolved "https://registry.yarnpkg.com/@pedrouid/environment/-/environment-1.0.1.tgz#858f0f8a057340e0b250398b75ead77d6f4342ec"
   integrity sha512-HaW78NszGzRZd9SeoI3JD11JqY+lubnaOx7Pewj5pfjqWXOEATpeKIFb9Z4t2WBUK2iryiXX3lzWwmYWgUL0Ug==
 
-"@rainbow-me/rainbowkit@^0.12.0":
+"@rainbow-me/rainbowkit@^0.12.15":
   version "0.12.15"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-0.12.15.tgz#b5c785ac1759a12fd3bdf58a94810c51e5cfeb5c"
   integrity sha512-FL2EiH3Cr1Pjoda21cGexvcxzUGUB0eNojMeRpM5xu9tLVVGMwsaLLrmVztFRi77zcxTFzP5whbjo0LJb3r2bQ==
@@ -3117,7 +3117,7 @@ eth-rpc-errors@^4.0.2:
   dependencies:
     fast-safe-stringify "^2.0.6"
 
-ethers@^5.5.1, ethers@^5.7.2:
+ethers@^5.6.8, ethers@^5.7.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
