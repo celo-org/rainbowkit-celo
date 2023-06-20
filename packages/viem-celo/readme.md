@@ -7,15 +7,12 @@ While **Viem supports celo out of the box**, including the formatting of celo's 
 
 ## Account
 
-In Viem a [Local Account](/linktiviemdocs) is one where the privatekey/mneumonic is locally available for signing. If you are building a wallet and want to sign transactions with alternative gas fee currencies you can import the `createCeloAccount` function and pass the result to you viem config like so.
-
 ```ts
 import { createWalletClient, http } from 'viem'
-import { createCeloAccount } from "@celo/viem-pack"
-// the celo chain for viem contains custom formatters for celo transactions and blocks.
-import { celo } from "viem/chains"
+// import chain from the celo viem pack so that serializer is included
+import { celo } from "@celo/viem-pack"
 
-const account = createCeloAccount(privateKey)
+const account = privateKeyToAccount(privateKey)
 
 const client = createWalletClient({
   account,
@@ -23,4 +20,29 @@ const client = createWalletClient({
   transport: http()
 })
 
+// because you passed celo chain to the client send Transaction now accepts feeCurrency as a property
+client.sendTransaction({
+  to: '0x...'
+  ....typicalTXProperties,
+  feeCurrency: CUSD_ADDRESS
+})
+
 ```
+
+## Sending Transactions with feeCurrency in a dapp
+
+
+```ts
+
+  client.request({
+    to: '0x...'
+    ....typicalTXProperties,
+    feeCurrency: CUSD_ADDRESS
+  })
+```
+
+
+## Using the useFeeCurrency hook
+
+```
+
