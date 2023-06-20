@@ -4,6 +4,9 @@ import { version } from "../package.json";
 import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import { useWalletClient } from "wagmi"
+import { celo } from "viem/chains"
+import { useCallback } from "react"
 
 const code = `// for ${version}
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -51,6 +54,13 @@ export function Demo() {
 }
 
 const Home: NextPage = () => {
+
+  const client = useWalletClient({chainId:celo.id})
+
+  useCallback(() => {
+    client.data?.sendTransaction<typeof celo>({feeCurrency: '0x00000'})
+  }, [client])
+
   return (
     <>
       <Head>
