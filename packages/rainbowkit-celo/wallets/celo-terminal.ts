@@ -4,7 +4,7 @@ import {
   Wallet,
 } from "@rainbow-me/rainbowkit";
 import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
-
+import { getUri } from "./getUri"
 interface CeloTerminalOptions {
   chains: Chain[];
   projectId: string;
@@ -29,7 +29,7 @@ export const CeloTerminal = ({
       connector,
       desktop: {
         getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
+          const uri = await getUri(connector)
           // Note: This doesn't work. I'll try to have a PR to add deeplinking to CeloTerminal - Nicolas
           return `https://celoterminal.com/wc?uri=${encodeURIComponent(uri)}`;
         },

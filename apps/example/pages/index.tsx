@@ -4,33 +4,33 @@ import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
-const code = `// for 1.0.0
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, WagmiConfig,  } from "wagmi";
-import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
-import celoGroups from "@celo/rainbowkit-celo/lists"
-import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
+const code = `// for 0.12.0
 import "@rainbow-me/rainbowkit/styles.css";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains, createClient, WagmiConfig } from "wagmi";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import celoGroups from "@celo/rainbowkit-celo/lists";
+import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
 
 const projectId = "your-wallet-connnect-project-id" // get one at https://cloud.walletconnect.com/app
 
-const connectors = celoGroups({chains, projectId, appName: typeof document === "object" && document.title || "Your App Name"})
+const connectors = celoGroups({
+  chains,
+  projectId,
+  appName: (typeof document === "object" && document.title) || "Sample App",
+});
 
-const { chains, publicClient } = configureChains(
-  [Alfajores, Celo, Cannoli],
-  [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
-);
-const wagmiConfig = createConfig({
+const wagmiClient = createClient({
   autoConnect: true,
   connectors,
-  publicClient: publicClient,
+  provider,
 });
 
 export default function Wrap() {
   return (
-    <WagmiConfig config={wagmiConfig}>
+    <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} coolMode={true}>
-        <YourApp />
+        <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>
   );

@@ -2,6 +2,7 @@ import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
 import { Alfajores, Baklava, Celo } from "@celo/rainbowkit-celo/chains";
+import { getUri } from "./getUri"
 
 interface CeloWalletOptions {
   chains: Chain[];
@@ -25,13 +26,13 @@ export const CeloWallet = ({
       connector,
       mobile: {
         getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
+          const uri = await getUri(connector)
           return uri;
         },
       },
       desktop: {
         getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
+          const uri = await getUri(connector)
           return `celowallet://wc?uri=${encodeURIComponent(uri)}`;
         },
       },
