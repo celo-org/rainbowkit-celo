@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "1.0.0",
+  "version": "0.12.0",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
@@ -62,7 +62,6 @@
   "keywords": [
     "celo",
     "dapp",
-    "viem",
     "crypto",
     "rainbow-kit",
     "web3",
@@ -79,9 +78,9 @@
     "@wagmi/chains": "^0.2.22"
   },
   "peerDependencies": {
-    "@rainbow-me/rainbowkit": "^1.0.0",
-    "viem": "^0.3.21",
-    "wagmi": "^1.0.0"
+    "@rainbow-me/rainbowkit": "^0.12.0",
+    "ethers": "^5.5.1",
+    "wagmi": "0.12.x"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
@@ -90,6 +89,9 @@
     "eslint-config-custom": "*",
     "react": "^17.0.2",
     "tsconfig": "*",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "@rainbow-me/rainbowkit": "^0.12.0",
+    "ethers": "^5.5.1",
+    "wagmi": "0.12.x"
   }
 }

@@ -1,12 +1,7 @@
 import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
 import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
 
-import {
-  Alfajores,
-  Baklava,
-  Celo,
-  Cannoli,
-} from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Baklava, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
 
 // rainbowkit utils has it but doesn't export it :/
 function isAndroid(): boolean {
@@ -15,14 +10,13 @@ function isAndroid(): boolean {
   );
 }
 
-interface ValoraOptions {
+export interface ValoraOptions {
   chains: Chain[];
   projectId: string;
 }
 
 export const Valora = ({
   chains = [Alfajores, Baklava, Celo, Cannoli],
-  projectId,
 }: ValoraOptions): Wallet => ({
   id: "valora",
   name: "Valora",
@@ -32,18 +26,27 @@ export const Valora = ({
   downloadUrls: {
     android: "https://play.google.com/store/apps/details?id=co.clabs.valora",
     ios: "https://apps.apple.com/app/id1520414263?mt=8",
-    qrCode: "https://valoraapp.com/",
+    qrCode: "https://valoraapp.com/"
   },
   createConnector: () => {
     const connector = getWalletConnectConnector({
       chains,
-      projectId,
     });
+
+    const getUri = async (): Promise<string> => {
+      const provider = await connector.getProvider()
+      return new Promise((resolve, reject) => {
+        provider.on('display_uri', (uri) => {
+          return resolve(uri)
+        })
+      })
+    }
+
     return {
       connector,
       mobile: {
         getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
+          const uri  = await getUri()
           return isAndroid()
             ? uri
             : // ideally this would use the WalletConnect registry, but this will do for now
@@ -51,7 +54,7 @@ export const Valora = ({
         },
       },
       qrCode: {
-        getUri: async () => (await connector.getProvider()).connector.uri,
+        getUri: async () => (await getUri()),
         instructions: {
           learnMoreUrl: "https://valoraapp.com/learn",
           steps: [
@@ -73,5 +76,3 @@ export const Valora = ({
     };
   },
 });
-
-export default Valora;
