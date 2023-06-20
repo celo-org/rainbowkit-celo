@@ -30,7 +30,7 @@ export default function Wrap() {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} coolMode={true}>
-        <Component {...pageProps} />
+        <YourApp />
       </RainbowKitProvider>
     </WagmiConfig>
   );

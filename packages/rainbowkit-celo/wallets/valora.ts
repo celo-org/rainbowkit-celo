@@ -73,3 +73,4 @@ export const Valora = ({
 });
 
 
+export default Valora;
