@@ -1,4 +1,6 @@
 import type { NextPage } from "next";
+import { useEffect } from "react";
+import { usePublicClient } from 'wagmi'
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
