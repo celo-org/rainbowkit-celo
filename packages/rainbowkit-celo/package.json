@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "1.0.1-beta.3",
+  "version": "1.0.1-beta.4",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
@@ -38,6 +38,10 @@
     "./lists": {
       "types": "./lists/index.d.ts",
       "import": "./lists/index.js"
+    },
+    "./utils/getWalletConnectUri": {
+      "types": "./utils/getWalletConnectUri.d.ts",
+      "import": "./utils/getWalletConnectUri.js"
     },
     "./wallets": {
       "types": "./wallets/index.d.ts",

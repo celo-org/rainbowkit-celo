@@ -10,7 +10,7 @@ import {
   Celo,
   Cannoli,
 } from "@celo/rainbowkit-celo/chains";
-import { getWalletConnectUri } from "../utils/getWalletConnectUri";
+import { getWalletConnectUri } from "@celo/rainbowkit-celo/utils/getWalletConnectUri";
 
 // rainbowkit utils has it but doesn't export it :/
 function isAndroid(): boolean {
