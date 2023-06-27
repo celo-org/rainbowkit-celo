@@ -98,8 +98,7 @@ const WithLocalWallet = () => {
     <button onClick={payWithStableToken}>Sign Send Transaction with Local Wallet</button>
     <>
     <h4>Transaction Info</h4>
-    {started && !sendTransactionHash && <p>Transaction Sending</p>}
-    {sendTransactionHash && <a href={`https://alfajores.celoscan.io/tx/${sendTransactionHash}`}>View on CeloCan</a>}
+    <TXDetails hash={sendTransactionHash} started={started}/>
     </>
   </section>
   )
