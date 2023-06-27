@@ -5,36 +5,10 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists";
-import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
-import { Address, defineChain, serializeTransaction } from "viem";
-import type { SerializeTransactionFn } from "viem/dist/types/utils/transaction/serializeTransaction";
-import { celo } from "viem/chains"
-import { TransactionSerializable, TransactionSerializableGeneric } from "viem/dist/types/types/transaction"
-
-type TXType = TransactionSerializableGeneric & {
-  type: 'cip42',
-  feeCurrency: Address,
-} | TransactionSerializable
-
-const mySerializer: SerializeTransactionFn<TXType> = (transaction) => {
-  if (transaction.type === 'cip42') {
-    return '0x7c' as const
-  }
-  return serializeTransaction(transaction)
-}
-
-const celoWithSerializer = defineChain({...celo, serializer: mySerializer});
-
-const transaction: TXType = {
-  chainId: 44787,
-  invalidTestProperty: 'boo',
-  feeCurrency: '0x00000'
-}
-
-const s = celoWithSerializer.serializer(transaction)
+import { celoAlfajores, celo, celoCannoli, } from "@celo/viem-tools/chains";
 
 const { chains, publicClient } = configureChains(
-  [Alfajores, Celo, Cannoli],
+  [celoAlfajores, celo, celoCannoli],
   [
     jsonRpcProvider({
       rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
