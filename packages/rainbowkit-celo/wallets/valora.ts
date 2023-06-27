@@ -1,5 +1,8 @@
-import type { Chain, Wallet } from "@rainbow-me/rainbowkit";
-import { getWalletConnectConnector } from "@rainbow-me/rainbowkit";
+import {
+  Chain,
+  getWalletConnectConnector,
+  Wallet,
+} from "@rainbow-me/rainbowkit";
 
 import {
   Alfajores,
@@ -7,6 +10,7 @@ import {
   Celo,
   Cannoli,
 } from "@celo/rainbowkit-celo/chains";
+import { getWalletConnectUri } from "../utils/getWalletConnectUri";
 
 // rainbowkit utils has it but doesn't export it :/
 function isAndroid(): boolean {
@@ -15,7 +19,7 @@ function isAndroid(): boolean {
   );
 }
 
-interface ValoraOptions {
+export interface ValoraOptions {
   chains: Chain[];
   projectId: string;
 }
@@ -36,6 +40,7 @@ export const Valora = ({
   },
   createConnector: () => {
     const connector = getWalletConnectConnector({
+      version: "2",
       chains,
       projectId,
     });
@@ -43,7 +48,7 @@ export const Valora = ({
       connector,
       mobile: {
         getUri: async () => {
-          const { uri } = (await connector.getProvider()).connector;
+          const uri = await getWalletConnectUri(connector, "2");
           return isAndroid()
             ? uri
             : // ideally this would use the WalletConnect registry, but this will do for now
@@ -51,7 +56,7 @@ export const Valora = ({
         },
       },
       qrCode: {
-        getUri: async () => (await connector.getProvider()).connector.uri,
+        getUri: () => getWalletConnectUri(connector, "2"),
         instructions: {
           learnMoreUrl: "https://valoraapp.com/learn",
           steps: [

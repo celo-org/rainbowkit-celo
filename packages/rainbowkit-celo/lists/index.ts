@@ -7,7 +7,7 @@ import {
   safeWallet,
   braveWallet,
 } from "@rainbow-me/rainbowkit/wallets";
-import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
+import { Valora, CeloWallet } from "../wallets";
 
 import type { Chain } from "@rainbow-me/rainbowkit";
 
