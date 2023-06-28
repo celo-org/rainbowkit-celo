@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
@@ -39,6 +39,10 @@
       "types": "./lists/index.d.ts",
       "import": "./lists/index.js"
     },
+    "./utils/getWalletConnectUri": {
+      "types": "./utils/getWalletConnectUri.d.ts",
+      "import": "./utils/getWalletConnectUri.js"
+    },
     "./wallets": {
       "types": "./wallets/index.d.ts",
       "import": "./wallets/index.js"
@@ -75,13 +79,12 @@
     "clean": "tsc -b --clean",
     "build": "tsc -b"
   },
-  "dependencies": {
-    "@wagmi/chains": "^0.2.22"
-  },
+  "dependencies": {},
   "peerDependencies": {
-    "@rainbow-me/rainbowkit": "^1.0.0",
-    "viem": "^0.3.21",
-    "wagmi": "^1.0.0"
+    "@rainbow-me/rainbowkit": ">=1.0.2 && <=2.0.0",
+    "@wagmi/chains": ">=1.0.0 && <=2.0.0",
+    "viem": ">=1.0.0 && <=2.0.0",
+    "wagmi": ">=1.0.0 && <=2.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
