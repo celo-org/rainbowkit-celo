@@ -52,7 +52,7 @@ export const Valora = ({
           return isAndroid()
             ? uri
             : // ideally this would use the WalletConnect registry, but this will do for now
-              `https://valoraapp.com/wc?uri=${encodeURIComponent(uri)}`;
+              `celo://walllet/wc?uri=${encodeURIComponent(uri)}`;
         },
       },
       qrCode: {
