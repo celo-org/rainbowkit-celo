@@ -54,13 +54,6 @@ export function Demo() {
 }
 
 const Home: NextPage = () => {
-
-  const client = useWalletClient({chainId:celo.id})
-
-  useCallback(() => {
-    client.data?.sendTransaction<typeof celo>({feeCurrency: '0x00000'})
-  }, [client])
-
   return (
     <>
       <Head>
