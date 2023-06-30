@@ -22,7 +22,7 @@ const FeeCurrency: NextPage = () => {
 
   const [sendTransactionHash, setSendTransactionHash] = useState('')
 
-  const CUSD_ADDRESS = useRegistry('StableToken')
+  const cUSDAddress = useRegistry('StableToken')
 
   const pk = process.env.NEXT_PUBLIC_PK
 
@@ -30,7 +30,6 @@ const FeeCurrency: NextPage = () => {
 
   const localAccountClient = useMemo(() => {
     if (!account) return undefined
-    console.info('account addr', account.address)
     return createWalletClient({
       account,
       // @ts-ignore
@@ -42,29 +41,19 @@ const FeeCurrency: NextPage = () => {
 
   const sendTransaction = useCallback(async (tx: Omit<SendTransactionParameters<typeof celoAlfajores>, 'account'>) => {
     if (!localAccountClient) return
-    debugger
     // @ts-expect-error
     const hash = await localAccountClient.sendTransaction(tx)
     setSendTransactionHash(hash);
 
   }, [localAccountClient])
 
-  const payWithStableTokenCode = `
-      sendTransaction({
-        feeCurrency: CUSD_ADDRESS,
-        value: BigInt(100000000000000000),
-        to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      })
-  `
-
   const payWithStableToken = useCallback(() => {
       return sendTransaction({
-        feeCurrency: CUSD_ADDRESS.data,
-        value: BigInt(100000000000000000),
+        feeCurrency: cUSDAddress.data,
+        value: BigInt(100000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
       })
-  }, [sendTransaction, CUSD_ADDRESS.data])
-
+  }, [sendTransaction, cUSDAddress.data])
 
   // localAccountClient.writeContract({
   //   account: '0x00000',
@@ -87,29 +76,31 @@ const FeeCurrency: NextPage = () => {
   }
 
 
-  const sendViaRPC = useCallback(() => {
-    return client.data?.sendTransaction({
-      // @ts-ignore
-        from: client.data?.account.address,
-        feeCurrency: CUSD_ADDRESS.data,
-        maxFeePerGas: BigInt(700000),
-        maxPriorityFeePerGas: BigInt(700000),
-        value: BigInt(100000000000000000),
-        to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      })
-  }, [CUSD_ADDRESS.data, client.data])
+  // const sendViaRPC = useCallback(() => {
+  //   return client.data?.sendTransaction({
+  //     // @ts-ignore
+  //       from: client.data?.account.address,
+  //       feeCurrency: CUSD_ADDRESS.data,
+  //       maxFeePerGas: BigInt(700000),
+  //       maxPriorityFeePerGas: BigInt(700000),
+  //       value: BigInt(100000000000000000),
+  //       to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
+  //     })
+  // }, [CUSD_ADDRESS.data, client.data])
 
 
   return <>
     <h1>Fee Currency Demo</h1>
     <div>
       <h2>Send Transaction</h2>
-      <button onClick={payWithStableToken}>Send</button>
-      <button onClick={sendViaRPC}>Send MM</button>
-      <SyntaxHighlighter language="typescript">{payWithStableTokenCode}</SyntaxHighlighter>
+      <button onClick={payWithStableToken}>Sign with Local Wallet</button>
+      <SyntaxHighlighter language="typescript">
+        {payWithStableToken.toString()}
+      </SyntaxHighlighter>
       <h3>Transaction Hash</h3>
       <SyntaxHighlighter language="typescript">{sendTransactionHash}</SyntaxHighlighter>
     </div>
+    {/* <button onClick={sendViaRPC}>Send MM</button> */}
     {/* <div>
       <h2>ContractWrite</h2>
       <SyntaxHighlighter language="typescript">{code}</SyntaxHighlighter>
