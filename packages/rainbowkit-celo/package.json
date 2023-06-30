@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "1.0.2-beta.2",
+  "version": "1.0.2",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
