@@ -94,5 +94,9 @@
     "react": "^17.0.2",
     "tsconfig": "*",
     "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@metamask/providers": "^11.1.0",
+    "@wagmi/connectors": "^2.6.1"
   }
 }
