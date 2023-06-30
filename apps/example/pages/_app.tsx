@@ -5,7 +5,7 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists";
-import { celoAlfajores, celo, celoCannoli, } from "@celo/viem-tools/chains";
+import { celoAlfajores, celo, celoCannoli, } from "viem/chains";
 
 const { chains, publicClient } = configureChains(
   [celoAlfajores, celo, celoCannoli],
