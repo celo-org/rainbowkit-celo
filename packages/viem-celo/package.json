@@ -6,6 +6,9 @@
   "types": "./index.d.ts",
   "author": "clabs.co",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc --target es2020"
+  },
   "keywords": [
     "celo",
     "dapp",
