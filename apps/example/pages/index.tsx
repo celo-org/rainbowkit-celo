@@ -1,10 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { version } from "../package.json";
 import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
-const code = `// for 1.0.0
+const code = `// for ${version}
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig,  } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
