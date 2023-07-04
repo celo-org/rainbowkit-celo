@@ -8,7 +8,7 @@ import celoGroups from "@celo/rainbowkit-celo/lists";
 import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
 
 const { chains, publicClient } = configureChains(
-  [Alfajores, Celo, Cannoli],
+  [Celo, Alfajores, Cannoli],
   [
     jsonRpcProvider({
       rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
