@@ -2,14 +2,12 @@ import { NextPage } from "next"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
-import { useContractRead, useContractWrite, useWalletClient } from 'wagmi'
+import { useContractRead, useWalletClient } from 'wagmi'
 import {privateKeyToAccount } from 'viem/accounts'
 import { Hex, SendTransactionParameters, WriteContractParameters,  createWalletClient,  defineChain, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {stableTokenABI, registryABI} from "@celo/abis/types/wagmi"
-// only needed until serializer PR is merged into viem
-import {serializeTransaction} from '../serializeTransaction'
-const celoWithSerializer = defineChain(celoAlfajores, {formatters: celoAlfajores.formatters, serializers: {transaction: serializeTransaction}})
+
 
 const useRegistry = (name: string) =>  useContractRead({
   abi: registryABI,
@@ -32,8 +30,7 @@ const FeeCurrency: NextPage = () => {
     if (!account) return undefined
     return createWalletClient({
       account,
-      // @ts-ignore
-      chain: celoWithSerializer,
+      chain: celoAlfajores,
       transport: http()
     })
   },[account])
