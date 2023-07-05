@@ -27,10 +27,13 @@ type EthereumProvider = { request(...args: any): Promise<any> }
 
 class MetaMaskConnectorPlus extends MetaMaskConnector  {
 
-
-  hasGasSnap = true
+  hasGasSnap: boolean = true
 
   async checkForGasSnap() {
+    debugger
+    if (this.hasGasSnap) {
+      return true
+    }
     const provider = await this.getProvider()
     const result = await provider?.request({
       // @ts-expect-error  -- viem doesn't know this method
@@ -42,12 +45,11 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     if (result) {
       this.hasGasSnap = true
     }
-    return result
+    return !!result
   }
 
 
   async getWalletClient({ chainId }: { chainId?: number } = {}) {
-    debugger
     const [provider, account] = await Promise.all([
       this.getProvider(),
       this.getAccount(),
@@ -55,12 +57,10 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     const chain = this.chains.find((x) => x.id === chainId)
     if (!provider) throw new Error('provider is required.')
 
-    await this.checkForGasSnap()
-
     return createWalletClient({
       account,
       chain,
-      transport: custom(provider,  {}, this.hasGasSnap),
+      transport: custom(provider,  {}, this.checkForGasSnap.bind(this)),
     })
   }
 }
@@ -70,14 +70,16 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
 function custom<TProvider extends EthereumProvider>(
   provider: TProvider,
   config: CustomTransportConfig = {},
-  hasGasSnap: boolean,
+  checkForGasSnap: () => Promise<boolean>,
 ): CustomTransport {
   const { key = 'custom', name = 'Custom Provider', retryDelay } = config
   return ({ retryCount: defaultRetryCount }) =>
     createTransport({
       key,
       name,
-      request:  (args) => {
+      request:  async (args) => {
+        const hasGasSnap = await checkForGasSnap()
+        debugger;
         if (hasGasSnap && args.method === 'eth_sendTransaction') {
           return provider.request({
             method: 'wallet_invokeSnap',
@@ -97,8 +99,6 @@ function custom<TProvider extends EthereumProvider>(
       type: 'custom',
     })
 }
-
-
 
 
 export const metaMaskWalletPlus = ({
