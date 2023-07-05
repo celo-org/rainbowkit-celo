@@ -1144,11 +1144,6 @@
   resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-1.4.0.tgz#71855105b510de0b412b8238016808dd9940d370"
   integrity sha512-9HwJrhcZ1TxyrCbE10y7s1eSiSiyfGam7AHIOLYExaOX+vpOZ+MNTt4orFEDbEpz1fxwJDPPI38lanAUix1OSA==
 
-"@wagmi/chains@^1.4.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-1.5.0.tgz#0b23a1505704b4b07a46f41e1ec65a486aceb16b"
-  integrity sha512-JO5iqh7Km4GW/6XKKDYMq3YQ9wlOSGzzaTUQhALQ58KANxEZ70tZWhfTZAPD3fdgv4wheai7kyHDNgTW6X7fnw==
-
 "@wagmi/cli@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@wagmi/cli/-/cli-1.2.0.tgz#4f9ada40ee06a92ac06ee9ba7758e9e4890076ae"
@@ -5997,11 +5992,6 @@ typedarray-to-buffer@3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
-
-typescript@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.1.3.tgz#8d84219244a6b40b6fb2b33cc1c062f715b9e826"
-  integrity sha512-XH627E9vkeqhlZFQuL+UsyAXEnibT0kWR2FWONlr4sTjvxyJYnyefgrkyECLzM5NenmKzRAy2rR/OlYLA1HkZw==
 
 typescript@^5.1.6:
   version "5.1.6"
