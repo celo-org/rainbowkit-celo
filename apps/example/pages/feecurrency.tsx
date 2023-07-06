@@ -2,9 +2,9 @@ import { NextPage } from "next"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
-import { useAccount, useConnect, useContractRead, useWalletClient, usePublicClient } from 'wagmi'
+import { useAccount, useContractRead, useWalletClient, usePublicClient } from 'wagmi'
 import {privateKeyToAccount } from 'viem/accounts'
-import { Address, Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
+import {  Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {registryABI} from "@celo/abis/types/wagmi"
 import styles from "../styles/FeeCurrency.module.css";
@@ -149,7 +149,7 @@ function OverTheWire() {
       const hash = await client.data?.sendTransaction({...tx, gas})
       console.log("tx",hash)
       setSendTransactionHash(hash!)
-    }, [publicClient, cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
+    }, [connector, setStarted, client.data, cUSDAddress.data, publicClient, setSendTransactionHash])
 
 
     const code = `sendTransaction({
