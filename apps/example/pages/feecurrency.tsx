@@ -17,10 +17,15 @@ const useRegistry = (name: string) =>  useContractRead({
   args: [name]
 })
 
-const WithLocalWallet = () => {
-
+function useTransactionState() {
   const [sendTransactionHash, setSendTransactionHash] = useState('')
   const [started, setStarted] = useState(false)
+  return {sendTransactionHash, setSendTransactionHash, started, setStarted}
+}
+
+const WithLocalWallet = () => {
+
+  const {sendTransactionHash, setSendTransactionHash, started, setStarted} = useTransactionState()
 
   const cUSDAddress = useRegistry('StableToken')
 
@@ -45,7 +50,7 @@ const WithLocalWallet = () => {
     const hash = await localAccountClient.sendTransaction(tx)
     setSendTransactionHash(hash);
 
-  }, [localAccountClient])
+  }, [localAccountClient, setStarted, setSendTransactionHash])
 
   const payWithStableToken = useCallback(() => {
       return sendTransaction({
@@ -91,9 +96,11 @@ const WithLocalWallet = () => {
   }
     </SyntaxHighlighter>
     <button onClick={payWithStableToken}>Sign Send Transaction with Local Wallet</button>
+    <>
     <h4>Transaction Info</h4>
     {started && !sendTransactionHash && <p>Transaction Sending</p>}
     {sendTransactionHash && <a href={`https://alfajores.celoscan.io/tx/${sendTransactionHash}`}>View on CeloCan</a>}
+    </>
   </section>
   )
 }
@@ -112,36 +119,58 @@ export default FeeCurrency
 
 
 function OverTheWire() {
+    const {sendTransactionHash, setSendTransactionHash, started, setStarted} = useTransactionState()
 
     const cUSDAddress = useRegistry('StableToken')
 
     const client = useWalletClient({chainId:celoAlfajores.id})
 
-    const sendToRemoteWallet = useCallback(() => {
-      return client.data?.sendTransaction({
-      // @ts-ignore
-        from: client.data?.account.address,
+    const sendToRemoteWallet = useCallback(async() => {
+      setStarted(true)
+
+      const hash = await client.data?.sendTransaction({
+        account: client.data.account,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
         maxPriorityFeePerGas: BigInt(700000),
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      })
-    }, [cUSDAddress.data, client.data])
+      } as SendTransactionParameters<typeof celoAlfajores>)
+      console.log("tx",hash)
+      setSendTransactionHash(hash!)
+    }, [cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
+
+
+    const code = `sendTransaction({
+        account: client.data.account,
+        feeCurrency: cUSDAddress.data,
+        maxFeePerGas: BigInt(700000),
+        maxPriorityFeePerGas: BigInt(700000),
+        value: BigInt(100000000000000000),
+        to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
+      } as SendTransactionParameters<typeof celoAlfajores>)`
+
 
 
   return <section>
       <h2>Signing With WalletConnect Wallet</h2>
       <ConnectButton />
-      <p>If You have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing over walletConnect.</p>
+      <p>If You have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing.</p>
       <h3>Example and Demo</h3>
       <SyntaxHighlighter language="typescript">
-
-
+        {code}
       </SyntaxHighlighter>
       <button onClick={sendToRemoteWallet}>Send Transaction to Remote Wallet</button>
+      <TXDetails started={started} txHash={sendTransactionHash}/>
   </section>
 }
 
 
 
+function TXDetails({started, txHash}:{txHash:string, started: boolean}) {
+  return <>
+    <h4>Transaction Info</h4>
+    {started && !txHash && <p>Transaction Sending</p>}
+    {txHash && <a href={`https://alfajores.celoscan.io/tx/${txHash}`}>View on CeloCan</a>}
+  </>
+}
