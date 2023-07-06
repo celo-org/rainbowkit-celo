@@ -83,19 +83,21 @@ function custom<TProvider extends EthereumProvider>(
         const hasGasSnap = await checkForGasSnap()
         debugger
         if (hasGasSnap && args.method === 'eth_sendTransaction') {
-          debugger
+          // @ts-expect-error
+          const tx = args.params[0]
           return provider.request({
             method: 'wallet_invokeSnap',
             params: {
               snapId: snapId,
               request: {
                 method: 'celo_sendTransaction',
-                params: args.params,
+                params: {
+                  tx
+                },
               },
             },
           })
         }
-        debugger
         return provider.request(args)
       },
       retryCount: config.retryCount ?? defaultRetryCount,

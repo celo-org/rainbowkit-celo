@@ -98,7 +98,7 @@ const WithLocalWallet = () => {
     <button onClick={payWithStableToken}>Sign Send Transaction with Local Wallet</button>
     <>
     <h4>Transaction Info</h4>
-    <TXDetails hash={sendTransactionHash} started={started}/>
+    <TXDetails txHash={sendTransactionHash!} started={started}/>
     </>
   </section>
   )
@@ -135,7 +135,7 @@ function OverTheWire() {
       }
 
       setStarted(true)
-
+      // @ts-ignore
       const tx = {
         account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
