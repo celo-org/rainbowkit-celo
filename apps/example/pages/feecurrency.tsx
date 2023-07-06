@@ -2,7 +2,7 @@ import { NextPage } from "next"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
-import { useContractRead, useWalletClient } from 'wagmi'
+import { useContractRead, useWalletClient, usePublicClient } from 'wagmi'
 import {privateKeyToAccount } from 'viem/accounts'
 import { Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -124,21 +124,25 @@ function OverTheWire() {
     const cUSDAddress = useRegistry('StableToken')
 
     const client = useWalletClient({chainId:celoAlfajores.id})
+    const publicClient = usePublicClient()
 
     const sendToRemoteWallet = useCallback(async() => {
       setStarted(true)
 
-      const hash = await client.data?.sendTransaction({
-        account: client.data.account,
+      const tx = {
+        account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
         maxPriorityFeePerGas: BigInt(700000),
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      } as SendTransactionParameters<typeof celoAlfajores>)
+      } as SendTransactionParameters<typeof celoAlfajores>
+
+      const gas = await publicClient.estimateGas(tx)
+      const hash = await client.data?.sendTransaction({...tx, gas})
       console.log("tx",hash)
       setSendTransactionHash(hash!)
-    }, [cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
+    }, [publicClient, cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
 
 
     const code = `sendTransaction({
@@ -174,3 +178,5 @@ function TXDetails({started, txHash}:{txHash:string, started: boolean}) {
     {txHash && <a href={`https://alfajores.celoscan.io/tx/${txHash}`}>View on CeloCan</a>}
   </>
 }
+
+
