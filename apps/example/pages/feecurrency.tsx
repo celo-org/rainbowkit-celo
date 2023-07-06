@@ -2,9 +2,9 @@ import { NextPage } from "next"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
-import { useContractRead, useWalletClient, usePublicClient } from 'wagmi'
+import { useAccount, useConnect, useContractRead, useWalletClient, usePublicClient } from 'wagmi'
 import {privateKeyToAccount } from 'viem/accounts'
-import { Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
+import { Address, Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
 import {registryABI} from "@celo/abis/types/wagmi"
 import styles from "../styles/FeeCurrency.module.css";
@@ -64,7 +64,7 @@ const WithLocalWallet = () => {
   return (
     <section>
       <h2>Signing With Viem WalletClient</h2>
-      <p>Using Viem it is eay to build a Wallet that supports Celo's pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem Client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
+      <p>Using Viem it is eay to build a Wallet that supports the celo feature pay for gas with certain erc20 token. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem Client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
       <h3>Example and Demo</h3>
 
       <SyntaxHighlighter language="typescript">
@@ -120,12 +120,20 @@ export default FeeCurrency
 function OverTheWire() {
     const {sendTransactionHash, setSendTransactionHash, started, setStarted} = useTransactionState()
 
+    const { connector } = useAccount()
+
     const cUSDAddress = useRegistry('StableToken')
 
     const client = useWalletClient({chainId:celoAlfajores.id})
     const publicClient = usePublicClient()
 
     const sendToRemoteWallet = useCallback(async() => {
+      // @ts-ignore
+      if (connector?.checkForGasSnap) {
+        // @ts-ignore
+        connector.checkForGasSnap()
+      }
+
       setStarted(true)
 
       const tx = {
@@ -156,7 +164,7 @@ function OverTheWire() {
 
 
   return <section>
-      <h2>Signing With WalletConnect Wallet</h2>
+      <h2>Signing With a Remote Wallet</h2>
       <ConnectButton />
       <p>If You have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing.</p>
       <h3>Example and Demo</h3>

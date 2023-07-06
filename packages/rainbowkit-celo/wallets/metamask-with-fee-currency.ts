@@ -27,15 +27,15 @@ type EthereumProvider = { request(...args: any): Promise<any> }
 
 class MetaMaskConnectorPlus extends MetaMaskConnector  {
 
-  hasGasSnap: boolean = true
+  hasGasSnap: boolean = false
 
   async checkForGasSnap() {
-    debugger
     if (this.hasGasSnap) {
       return true
     }
     const provider = await this.getProvider()
-    const result = await provider?.request({
+    debugger
+    const result: any = await provider?.request({
       // @ts-expect-error  -- viem doesn't know this method
       method: 'wallet_requestSnaps',
       // @ts-expect-error
@@ -48,7 +48,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     return !!result
   }
 
-
+  // @ts-expect-error
   async getWalletClient({ chainId }: { chainId?: number } = {}) {
     const [provider, account] = await Promise.all([
       this.getProvider(),
@@ -56,6 +56,8 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     ])
     const chain = this.chains.find((x) => x.id === chainId)
     if (!provider) throw new Error('provider is required.')
+
+    await this.checkForGasSnap()
 
     return createWalletClient({
       account,
@@ -79,8 +81,9 @@ function custom<TProvider extends EthereumProvider>(
       name,
       request:  async (args) => {
         const hasGasSnap = await checkForGasSnap()
-        debugger;
+        debugger
         if (hasGasSnap && args.method === 'eth_sendTransaction') {
+          debugger
           return provider.request({
             method: 'wallet_invokeSnap',
             params: {
@@ -92,6 +95,7 @@ function custom<TProvider extends EthereumProvider>(
             },
           })
         }
+        debugger
         return provider.request(args)
       },
       retryCount: config.retryCount ?? defaultRetryCount,
