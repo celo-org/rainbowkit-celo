@@ -66,8 +66,7 @@ const WithLocalWallet = () => {
   const sendTransaction = useCallback(async (tx: Omit<SendTransactionParameters<typeof celoAlfajores>, 'account'>) => {
     if (!localAccountClient) return
     setStarted(true)
-    // @ts-expect-error bigint | undefined not assignable to bigint
-    const hash = await localAccountClient.sendTransaction(tx)
+    const hash = await localAccountClient.sendTransaction(tx as SendTransactionParameters<typeof celoAlfajores>)
     setSendTransactionHash(hash);
 
   }, [localAccountClient, setStarted, setSendTransactionHash])
@@ -84,8 +83,9 @@ const WithLocalWallet = () => {
   return (
     <section className={styles.section}>
       <h2>Signing With Viem WalletClient</h2>
-      <p>Using Viem it is eay to build a Wallet that supports Celo&apos;s pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem Client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
+      <p>Using Viem it is easy to build a Wallet that supports Celo&apos;s pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
       <h3>Example and Demo</h3>
+
 
       <SyntaxHighlighter language="typescript">
   {
@@ -181,7 +181,7 @@ function OverTheWire() {
   return <section className={styles.section}>
       <h2>Signing With WalletConnect Wallet</h2>
       <ConnectButton />
-      <p>If You have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing.</p>
+      <p>If you have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing.</p>
       <h3>Example and Demo</h3>
       <SyntaxHighlighter language="typescript">
         {code}
