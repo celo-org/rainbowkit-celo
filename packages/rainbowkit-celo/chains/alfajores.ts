@@ -1,5 +1,5 @@
 import { Chain } from "@rainbow-me/rainbowkit";
-import {celoAlfajores} from "viem/chains";
+import { celoAlfajores } from "viem/chains";
 
 const Alfajores: Chain = {
   ...celoAlfajores,

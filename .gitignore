@@ -36,6 +36,4 @@ packages/rainbowkit-celo/**/*d.ts
 packages/rainbowkit-celo/**/*.js
 packages/rainbowkit-celo/README.md
 
-packages/viem-celo/**/*d.ts
-packages/viem-celo/**/*.js
 .env
