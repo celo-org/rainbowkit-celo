@@ -82,7 +82,6 @@
   "dependencies": {},
   "peerDependencies": {
     "@rainbow-me/rainbowkit": ">=1.0.2 && <=2.0.0",
-    "@wagmi/chains": ">=1.0.0 && <=2.0.0",
     "viem": ">=1.2.8 && <=2.0.0",
     "wagmi": ">=1.0.0 && <=2.0.0"
   },
