@@ -1,4 +1,5 @@
 import { NextPage } from "next"
+import Head from "next/head"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
@@ -22,6 +23,25 @@ function useTransactionState() {
   const [started, setStarted] = useState(false)
   return {sendTransactionHash, setSendTransactionHash, started, setStarted}
 }
+
+const FeeCurrency: NextPage = () => {
+
+  return <>
+    <Head>
+      <title>Using Fee Currency with Viem</title>
+      <meta name="description" content="RainbowKit with Celo" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+
+    <div className={styles.main}>
+      <h1>Celo Fee Currency With Viem</h1>
+      <WithLocalWallet/>
+      <OverTheWire/>
+    </div>
+  </>
+}
+
+export default FeeCurrency;
 
 const WithLocalWallet = () => {
 
@@ -62,7 +82,7 @@ const WithLocalWallet = () => {
 
 
   return (
-    <section>
+    <section className={styles.section}>
       <h2>Signing With Viem WalletClient</h2>
       <p>Using Viem it is eay to build a Wallet that supports Celo&apos;s pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem Client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
       <h3>Example and Demo</h3>
@@ -71,7 +91,7 @@ const WithLocalWallet = () => {
   {
   `
   import { celo } from 'viem/chains'
-  import { createWalletClient, privateKeyToAccount } from 'viem'
+  import { createWalletClient, privateKeyToAccount, type SendTransactionParameters, http } from 'viem'
 
   const account = privateKeyToAccount(PRIVATE_KEY)
 
@@ -105,19 +125,6 @@ const WithLocalWallet = () => {
   )
 }
 
-
-const FeeCurrency: NextPage = () => {
-  return <div className={styles.main}>
-    <h1>Celo Fee Currency With Viem</h1>
-    <WithLocalWallet/>
-    <OverTheWire/>
-  </div>
-}
-
-export default FeeCurrency
-
-
-
 function OverTheWire() {
     const {sendTransactionHash, setSendTransactionHash, started, setStarted} = useTransactionState()
 
@@ -129,34 +136,49 @@ function OverTheWire() {
     const sendToRemoteWallet = useCallback(async() => {
       setStarted(true)
 
-      const tx = {
+      const tx: SendTransactionParameters<typeof celoAlfajores>= {
         account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
         maxPriorityFeePerGas: BigInt(700000),
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      } as SendTransactionParameters<typeof celoAlfajores>
+      }
 
       const gas = await publicClient.estimateGas(tx)
       const hash = await client.data?.sendTransaction({...tx, gas})
       console.log("tx",hash)
       setSendTransactionHash(hash!)
+      if (!hash) return
+      const receipt = await publicClient.waitForTransactionReceipt({hash})
+      console.log("receipt", receipt)
     }, [publicClient, cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
 
 
-    const code = `sendTransaction({
-        account: client.data.account,
+    const code = `
+    import { useWalletClient, usePublicClient } from 'wagmi'
+    import { type SendTransactionParameters } from 'viem'
+
+    const client = useWalletClient({chainId:celoAlfajores.id})
+    const publicClient = usePublicClient()
+
+    const tx: SendTransactionParameters<typeof celoAlfajores> = {
+        account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
         maxPriorityFeePerGas: BigInt(700000),
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      } as SendTransactionParameters<typeof celoAlfajores>)`
+      }
+
+      const gas = await publicClient.estimateGas(tx)
+      const hash = await client.data?.sendTransaction({...tx, gas})
+      const receipt = await publicClient.waitForTransactionReceipt({hash})
+    `
 
 
 
-  return <section>
+  return <section className={styles.section}>
       <h2>Signing With WalletConnect Wallet</h2>
       <ConnectButton />
       <p>If You have a wallet that supports serializing feeCurrency you can use viem to send the transaction to that wallet for signing.</p>

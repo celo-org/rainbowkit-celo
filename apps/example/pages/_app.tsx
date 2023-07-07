@@ -34,6 +34,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains} coolMode={true}>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/fee-currency">FeeCurrency</a>
+        </nav>
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>
