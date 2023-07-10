@@ -1,10 +1,11 @@
 import { getWalletConnectConnector } from '@rainbow-me/rainbowkit'
 import { MetaMaskConnector } from '@wagmi/connectors/metaMask'
-import {createWalletClient, createTransport, type CustomTransport, type CustomTransportConfig } from 'viem'
+import {createWalletClient, type EIP1193RequestFn, createTransport, type TransportConfig, type CustomTransport, type CustomTransportConfig } from 'viem'
 import { getWalletConnectUri } from '../utils/getWalletConnectUri'
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 import type { MetaMaskConnectorOptions } from '@wagmi/core/connectors/metaMask';
 import type {Chain, Wallet} from "@rainbow-me/rainbowkit"
+
 export interface MetaMaskWalletOptions {
     projectId: string;
     chains: Chain[];
@@ -19,11 +20,11 @@ import { MetaMaskInpageProvider } from "@metamask/providers";
 
 declare global {
   interface Window{
-    ethereum?:MetaMaskInpageProvider | any
+    ethereum?: MetaMaskInpageProvider | any
   }
 }
 
-type EthereumProvider = { request(...args: any): Promise<any> }
+type EthereumProvider = { request: TransportConfig['request'] }
 
 class MetaMaskConnectorPlus extends MetaMaskConnector  {
 
@@ -47,8 +48,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     }
     return !!result
   }
-
-  // @ts-expect-error
+  // @ts-ignore
   async getWalletClient({ chainId }: { chainId?: number } = {}) {
     const [provider, account] = await Promise.all([
       this.getProvider(),
@@ -67,8 +67,6 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
   }
 }
 
-
-
 function custom<TProvider extends EthereumProvider>(
   provider: TProvider,
   config: CustomTransportConfig = {},
@@ -79,12 +77,13 @@ function custom<TProvider extends EthereumProvider>(
     createTransport({
       key,
       name,
+      // @ts-expect-error
       request:  async (args) => {
         const hasGasSnap = await checkForGasSnap()
         debugger
-        if (hasGasSnap && args.method === 'eth_sendTransaction') {
-          // @ts-expect-error
+        if (hasGasSnap && args.method === 'eth_sendTransaction' && Array.isArray(args.params)) {
           const tx = args.params[0]
+          console.info('tx', tx)
           return provider.request({
             method: 'wallet_invokeSnap',
             params: {
@@ -96,9 +95,9 @@ function custom<TProvider extends EthereumProvider>(
                 },
               },
             },
-          })
+          }) as ReturnType<TransportConfig['request']>
         }
-        return provider.request(args)
+        return provider.request(args) as ReturnType<TransportConfig['request']>
       },
       retryCount: config.retryCount ?? defaultRetryCount,
       retryDelay,
@@ -157,7 +156,7 @@ export const metaMaskWalletPlus = ({
           });
 
       const getUri = async () => {
-        // @ts-expect-error -- says connector is not derived from Connector but it is
+        // @ts-expect-error
         const uri = await getWalletConnectUri(connector, 2);
         return isAndroid()
           ? uri

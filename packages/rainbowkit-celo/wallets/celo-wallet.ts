@@ -17,7 +17,6 @@ export const CeloWallet = ({
   name: "Celo Wallet",
   iconUrl: "https://rainbowkit-with-celo.vercel.app/icons/mono.svg",
   iconBackground: "#FFF",
-  // @ts-expect-error
   createConnector: () => {
     const connector = getWalletConnectConnector({
       version: "2",
@@ -27,12 +26,10 @@ export const CeloWallet = ({
     return {
       connector,
       mobile: {
-        // @ts-expect-error
         getUri: () => getWalletConnectUri(connector, "2"),
       },
       desktop: {
         getUri: async () => {
-          // @ts-expect-error
           const uri = await getWalletConnectUri(connector, "2");
           return `celowallet://wc?uri=${encodeURIComponent(uri)}`;
         },

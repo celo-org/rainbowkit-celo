@@ -38,7 +38,6 @@ export const Valora = ({
     ios: "https://apps.apple.com/app/id1520414263?mt=8",
     qrCode: "https://valoraapp.com/",
   },
-  // @ts-expect-error
   createConnector: () => {
     const connector = getWalletConnectConnector({
       version: "2",
@@ -49,7 +48,6 @@ export const Valora = ({
       connector,
       mobile: {
         getUri: async () => {
-          // @ts-expect-error
           const uri = await getWalletConnectUri(connector, "2");
           return isAndroid()
             ? uri
@@ -58,7 +56,6 @@ export const Valora = ({
         },
       },
       qrCode: {
-        // @ts-expect-error
         getUri: () => getWalletConnectUri(connector, "2"),
         instructions: {
           learnMoreUrl: "https://valoraapp.com/learn",
