@@ -1,7 +1,7 @@
 {
   "name": "@celo/rainbowkit-celo",
   "author": "cLabs",
-  "version": "1.0.2-dev",
+  "version": "1.0.3-beta.3",
   "description": "Quickly Setup RainbowKit for Celo",
   "homepage": "https://rainbowkit-with-celo.vercel.app/",
   "repository": {
@@ -79,10 +79,8 @@
     "clean": "tsc -b --clean",
     "build": "tsc -b"
   },
-  "dependencies": {},
   "peerDependencies": {
     "@rainbow-me/rainbowkit": ">=1.0.2 && <=2.0.0",
-    "@wagmi/chains": ">=1.0.0 && <=2.0.0",
     "viem": ">=1.2.8 && <=2.0.0",
     "wagmi": ">=1.0.0 && <=2.0.0"
   },
@@ -93,7 +91,7 @@
     "eslint-config-custom": "*",
     "react": "^17.0.2",
     "tsconfig": "*",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.6"
   },
   "dependencies": {
     "@metamask/providers": "^11.1.0",

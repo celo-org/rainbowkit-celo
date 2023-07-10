@@ -5,10 +5,10 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists";
-import { celoAlfajores, celo, celoCannoli, } from "viem/chains";
+import { Alfajores, Celo, Cannoli} from "@celo/rainbowkit-celo/chains";
 
 const { chains, publicClient } = configureChains(
-  [celoAlfajores, celo, celoCannoli],
+  [Celo, Alfajores, Cannoli],
   [
     jsonRpcProvider({
       rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }),
@@ -34,6 +34,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains} coolMode={true}>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/fee-currency">FeeCurrency</a>
+        </nav>
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>

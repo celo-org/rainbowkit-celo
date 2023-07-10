@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { version } from "../package.json";
+import { version } from "@celo/rainbowkit-celo";
 import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";

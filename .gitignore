@@ -34,8 +34,6 @@ yarn-error.log*
 *ts.map
 packages/rainbowkit-celo/**/*d.ts
 packages/rainbowkit-celo/**/*.js
-packages/rainbowkit-celo/README.md
+README.md
 
-packages/viem-celo/**/*d.ts
-packages/viem-celo/**/*.js
 .env
