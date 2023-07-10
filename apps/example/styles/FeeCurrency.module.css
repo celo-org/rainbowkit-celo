@@ -1,0 +1,16 @@
+
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+.section {
+  max-width: 40rem;
+}
