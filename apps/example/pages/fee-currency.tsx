@@ -144,7 +144,7 @@ function OverTheWire() {
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
       }
-
+      alert(`Account ${client.data?.account.address} is sending ${tx.value} to 0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF}`)
       const gas = await publicClient.estimateGas(tx)
       const hash = await client.data?.sendTransaction({...tx, gas})
       console.log("tx",hash)
