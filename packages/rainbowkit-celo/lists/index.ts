@@ -1,5 +1,4 @@
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
-import { metaMaskWalletPlus } from "../wallets/metamask-with-fee-currency";
 import {
   omniWallet,
   walletConnectWallet,
@@ -7,8 +6,7 @@ import {
   safeWallet,
   braveWallet,
 } from "@rainbow-me/rainbowkit/wallets";
-import { Valora, CeloWallet } from "@celo/rainbowkit-celo/wallets";
-
+import { Valora, CeloWallet, MetaMask } from "@celo/rainbowkit-celo/wallets";
 
 import type { Chain } from "@rainbow-me/rainbowkit";
 
@@ -27,7 +25,7 @@ export default function connectors({
       wallets: [
         Valora({ chains, projectId }),
         CeloWallet({ chains, projectId }),
-        metaMaskWalletPlus({ chains, projectId })
+        MetaMask({ chains, projectId })
       ],
     },
     {

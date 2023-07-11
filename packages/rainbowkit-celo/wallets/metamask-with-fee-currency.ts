@@ -1,7 +1,7 @@
 import { getWalletConnectConnector } from '@rainbow-me/rainbowkit'
 import { MetaMaskConnector } from '@wagmi/connectors/metaMask'
 import {createWalletClient, createTransport, type TransportConfig, type CustomTransport, type CustomTransportConfig } from 'viem'
-import { getWalletConnectUri } from '../utils/getWalletConnectUri'
+import { getWalletConnectUri } from "@celo/rainbowkit-celo/utils/getWalletConnectUri";
 import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 import type { MetaMaskConnectorOptions } from '@wagmi/core/connectors/metaMask';
 import type {Chain, Wallet} from "@rainbow-me/rainbowkit"
