@@ -84,7 +84,7 @@ const WithLocalWallet = () => {
   return (
     <section className={styles.section}>
       <h2>Signing With Viem WalletClient</h2>
-      <p>Using Viem it is easy to build a Wallet that supports Celo&apos;s pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
+      <p>Using Viem it is easy to build a wallet that supports Celo&apos;s ability to pay for gas with certain erc20 tokens because viem includes custom block and transaction formatters and serializer for celo by default. <strong>Simply import a `celo` chain from `viem/chains` and pass as option to `createWalletClient` </strong>. After setting up your viem client, when ready to send the transaction include the feeCurrency field with token address. </p>
       <h3>Example and Demo</h3>
 
 
