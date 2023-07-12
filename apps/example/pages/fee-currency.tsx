@@ -13,6 +13,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 const useRegistry = (name: string) =>  useContractRead({
   abi: registryABI,
+  chainId: celoAlfajores.id,
   address: '0x000000000000000000000000000000000000ce10',
   functionName: 'getAddressForString',
   args: [name]
