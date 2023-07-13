@@ -13,6 +13,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 const useRegistry = (name: string) =>  useContractRead({
   abi: registryABI,
+  chainId: celoAlfajores.id,
   address: '0x000000000000000000000000000000000000ce10',
   functionName: 'getAddressForString',
   args: [name]
@@ -83,7 +84,13 @@ const WithLocalWallet = () => {
   return (
     <section className={styles.section}>
       <h2>Signing With Viem WalletClient</h2>
-      <p>Using Viem it is easy to build a Wallet that supports Celo&apos;s pay for gas with certain erc20 tokens feature. Simply import the `celo` chain from `viem/chains`. Formatters and the Transaction Serializer are included by default. Setup your viem client with private key and when ready to send the transaction include the feeCurrency field with token address. </p>
+      <p>With Viem&apos;s built in Celo transaction serializer and Celo block/transaction
+        formatters it is easy to build a wallet that supports Celo&apos;s ability to pay
+        gas fees with various erc20 tokens. Simply, <strong>import a Celo chain from `viem/chain``
+        and pass it to Viem&apos;s `createWalletClient`.</strong> Once the client is created you
+        can <strong>add the feeCurrency field to your transaction</strong> with the address of
+        the token you want to use for gas.
+      </p>
       <h3>Example and Demo</h3>
 
 
