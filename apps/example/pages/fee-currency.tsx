@@ -3,7 +3,7 @@ import Head from "next/head"
 import { useCallback, useState } from "react"
 import { useMemo } from "react"
 import { celoAlfajores } from 'viem/chains'
-import { useContractRead, useWalletClient, usePublicClient } from 'wagmi'
+import { useContractRead, useWalletClient, usePublicClient, useChainId } from 'wagmi'
 import {privateKeyToAccount } from 'viem/accounts'
 import { Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -11,9 +11,9 @@ import {registryABI} from "@celo/abis/types/wagmi"
 import styles from "../styles/FeeCurrency.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
-const useRegistry = (name: string) =>  useContractRead({
+const useRegistry = (name: string, chainId?: number) =>  useContractRead({
   abi: registryABI,
-  chainId: celoAlfajores.id,
+  chainId,
   address: '0x000000000000000000000000000000000000ce10',
   functionName: 'getAddressForString',
   args: [name]
@@ -48,7 +48,7 @@ const WithLocalWallet = () => {
 
   const {sendTransactionHash, setSendTransactionHash, started, setStarted} = useTransactionState()
 
-  const cUSDAddress = useRegistry('StableToken')
+  const cUSDAddress = useRegistry('StableToken', celoAlfajores.id)
 
   const pk = process.env.NEXT_PUBLIC_PK
 
@@ -137,13 +137,13 @@ function OverTheWire() {
 
     const cUSDAddress = useRegistry('StableToken')
 
-    const client = useWalletClient({chainId:celoAlfajores.id})
+    const client = useWalletClient()
     const publicClient = usePublicClient()
 
     const sendToRemoteWallet = useCallback(async() => {
       setStarted(true)
 
-      const tx: SendTransactionParameters<typeof celoAlfajores>= {
+      const tx: SendTransactionParameters<typeof celoAlfajores> = {
         account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
@@ -151,14 +151,18 @@ function OverTheWire() {
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
       }
-
-      const gas = await publicClient.estimateGas(tx)
-      const hash = await client.data?.sendTransaction({...tx, gas})
-      console.log("tx",hash)
-      setSendTransactionHash(hash!)
-      if (!hash) return
-      const receipt = await publicClient.waitForTransactionReceipt({hash})
-      console.log("receipt", receipt)
+      try {
+        const gas = await publicClient.estimateGas(tx)
+        const hash = await client.data?.sendTransaction({...tx, gas})
+        console.log("tx",hash)
+        setSendTransactionHash(hash!)
+        if (!hash) return
+        const receipt = await publicClient.waitForTransactionReceipt({hash})
+        console.log("receipt", receipt)
+      } catch (e) {
+        setStarted(false)
+        console.error(e)
+      }
     }, [publicClient, cUSDAddress.data, client.data, setSendTransactionHash, setStarted])
 
 
@@ -201,10 +205,11 @@ function OverTheWire() {
 
 
 function TXDetails({started, txHash}:{txHash:string, started: boolean}) {
+  const chainID = useChainId()
   return <>
     <h4>Transaction Info</h4>
     {started && !txHash && <p>Transaction Sending</p>}
-    {txHash && <a href={`https://alfajores.celoscan.io/tx/${txHash}`}>View on CeloCan</a>}
+    {txHash && <a href={`https://${chainID === celoAlfajores.id ? "alfajores." : ""}celoscan.io/tx/${txHash}`}>View on CeloCan</a>}
   </>
 }
 
