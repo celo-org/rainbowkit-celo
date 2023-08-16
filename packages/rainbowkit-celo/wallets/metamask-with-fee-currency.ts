@@ -71,7 +71,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     return createWalletClient({
       account,
       chain,
-      transport: custom(provider,  {}, this.checkForGasSnap.bind(this)),
+      transport: custom(provider,  {}, this.checkForGasSnap.bind(this), account),
     })
   }
 }
@@ -80,6 +80,7 @@ function custom<TProvider extends EthereumProvider>(
   provider: TProvider,
   config: CustomTransportConfig = {},
   checkForGasSnap: () => Promise<boolean>,
+  defaultFrom?: string // address
 ): CustomTransport {
   const { key = 'custom', name = 'Custom Provider', retryDelay } = config
   return ({ retryCount: defaultRetryCount }) =>
@@ -97,7 +98,7 @@ function custom<TProvider extends EthereumProvider>(
               request: {
                 method: 'celo_sendTransaction',
                 params: {
-                  tx: cip42ToLegacy(args.params[0])
+                  tx: cip42ToLegacy(args.params[0], defaultFrom)
                 },
               },
             },
@@ -112,12 +113,12 @@ function custom<TProvider extends EthereumProvider>(
 }
 
 
-const cip42ToLegacy = (tx: any) => {
-  debugger
+const cip42ToLegacy = (tx: any, defaultFrom: string) => {
   const {from, gas, maxFeePerGas, maxPriorityFeePerGas, ...basicFields } = tx
   return {
     ...basicFields,
-    gasLimit: gas
+    gasLimit: gas,
+    from: from || defaultFrom,
   }
 }
 
