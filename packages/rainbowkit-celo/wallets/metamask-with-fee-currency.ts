@@ -6,15 +6,12 @@ import { metaMaskWallet } from '@rainbow-me/rainbowkit/wallets'
 import type { MetaMaskConnectorOptions } from '@wagmi/core/connectors/metaMask';
 import type {Chain, Wallet} from "@rainbow-me/rainbowkit"
 
-
-
 export interface MetaMaskWalletOptions {
     projectId: string;
     chains: Chain[];
     walletConnectVersion?: '2';
     walletConnectOptions?: Parameters<typeof getWalletConnectConnector>[0]['options'];
 }
-
 
 const snapId = 'npm:@celo/gas-snap'
 import { MetaMaskInpageProvider } from "@metamask/providers";
@@ -27,35 +24,64 @@ declare global {
 
 type EthereumProvider = { request: TransportConfig['request'] }
 
-type RequestSnapsResult = {
-  'npm:@celo/gas-snap': {
-    version: string, // semver
-    id: 'npm:@celo/gas-snap',
-    enabled: boolean,
-    blocked: boolean,
-  }
-} | undefined
+type GetSnapsResponse = Record<string, Snap>;
+
+type Snap = {
+  permissionName: string;
+  id: string;
+  version: string;
+  initialPermissions: Record<string, unknown>;
+  enabled: boolean,
+  blocked: boolean
+};
+
 
 class MetaMaskConnectorPlus extends MetaMaskConnector  {
 
   hasGasSnap: boolean = false
+  snapRejected : boolean = false
 
   async checkForGasSnap() {
+    if (this.snapRejected) {
+      return false
+    }
+
     if (this.hasGasSnap) {
       return true
     }
+    
     const provider = await this.getProvider()
-    debugger
-    const result: RequestSnapsResult  = await provider?.request({
+    // @ts-ignore
+    const getSnapResult : GetSnapsResponse = await provider?.request({ method: 'wallet_getSnaps' });
+    debugger;
+
+    if (getSnapResult[snapId]) {
+      // Snap is installed
+
+      if (getSnapResult[snapId]?.enabled ) {
+        this.hasGasSnap = true;
+        return true;
+      } else {
+        this.snapRejected = true;
+        return false;
+      }
+    }
+    
+    try {
+     await provider?.request({
       // @ts-expect-error  -- viem doesn't know this method
       method: 'wallet_requestSnaps',
       // @ts-expect-error
       params: {[snapId]: {}},
     });
-    console.info('wallet_requestSnaps', result)
-    const settings = result?.['npm:@celo/gas-snap']
-    this.hasGasSnap = settings?.enabled && !settings?.blocked || false
-    return this.hasGasSnap
+    this.hasGasSnap = true;
+  } catch (error) {
+    // user cancelled installation
+    debugger
+    this.snapRejected = true;
+  }
+  
+  return this.hasGasSnap && !this.snapRejected
   }
   // @ts-ignore
   async getWalletClient({ chainId }: { chainId?: number } = {}) {
@@ -71,7 +97,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     return createWalletClient({
       account,
       chain,
-      transport: custom(provider,  {}, this.checkForGasSnap.bind(this), account),
+      transport: custom(provider,  {}, this.checkForGasSnap.bind(this)),
     })
   }
 }
@@ -80,7 +106,6 @@ function custom<TProvider extends EthereumProvider>(
   provider: TProvider,
   config: CustomTransportConfig = {},
   checkForGasSnap: () => Promise<boolean>,
-  defaultFrom?: string // address
 ): CustomTransport {
   const { key = 'custom', name = 'Custom Provider', retryDelay } = config
   return ({ retryCount: defaultRetryCount }) =>
@@ -98,7 +123,7 @@ function custom<TProvider extends EthereumProvider>(
               request: {
                 method: 'celo_sendTransaction',
                 params: {
-                  tx: cip42ToLegacy(args.params[0], defaultFrom)
+                  tx: cip42ToLegacy(args.params[0])
                 },
               },
             },
@@ -113,12 +138,11 @@ function custom<TProvider extends EthereumProvider>(
 }
 
 
-const cip42ToLegacy = (tx: any, defaultFrom: string) => {
-  const {from, gas, maxFeePerGas, maxPriorityFeePerGas, ...basicFields } = tx
+const cip42ToLegacy = (tx: any) => {
+  const {gas, maxFeePerGas, maxPriorityFeePerGas, ...basicFields } = tx
   return {
     ...basicFields,
-    gasLimit: gas,
-    from: from || defaultFrom,
+    gasLimit: gas
   }
 }
 
