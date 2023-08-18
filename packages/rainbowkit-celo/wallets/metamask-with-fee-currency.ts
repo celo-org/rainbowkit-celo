@@ -15,6 +15,7 @@ export interface MetaMaskWalletOptions {
 
 const snapId = 'npm:@celo/gas-snap'
 import { MetaMaskInpageProvider } from "@metamask/providers";
+import { WindowProvider } from 'wagmi';
 
 declare global {
   interface Window{
@@ -35,6 +36,26 @@ type Snap = {
   blocked: boolean
 };
 
+/**
+ * Detect if the wallet injecting the ethereum object is Flask.
+ *
+ * @returns True if the MetaMask version is Flask, false otherwise.
+ */
+export const isFlask = async (provider: WindowProvider | undefined) => {
+
+
+  try {
+    const clientVersion = await provider?.request({
+      method: 'web3_clientVersion',
+    });
+    // @ts-ignore
+    const isFlaskDetected = (clientVersion as string[])?.includes('flask');
+
+    return Boolean(provider && isFlaskDetected);
+  } catch {
+    return false;
+  }
+};
 
 class MetaMaskConnectorPlus extends MetaMaskConnector  {
 
@@ -51,6 +72,14 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     }
     
     const provider = await this.getProvider()
+
+    const flaskInstalled = await isFlask(provider);
+
+    if (!flaskInstalled) {
+      this.hasGasSnap = false;
+      return false;
+    }
+    
     // @ts-ignore
     const getSnapResult : GetSnapsResponse = await provider?.request({ method: 'wallet_getSnaps' });
     debugger;
