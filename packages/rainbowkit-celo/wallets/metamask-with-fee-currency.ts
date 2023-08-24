@@ -70,7 +70,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     if (this.hasGasSnap) {
       return true
     }
-    
+
     const provider = await this.getProvider()
 
     const flaskInstalled = await isFlask(provider);
@@ -79,7 +79,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
       this.hasGasSnap = false;
       return false;
     }
-    
+
     // @ts-ignore
     const getSnapResult : GetSnapsResponse = await provider?.request({ method: 'wallet_getSnaps' });
     debugger;
@@ -95,7 +95,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
         return false;
       }
     }
-    
+
     try {
      await provider?.request({
       // @ts-expect-error  -- viem doesn't know this method
@@ -109,7 +109,7 @@ class MetaMaskConnectorPlus extends MetaMaskConnector  {
     debugger
     this.snapRejected = true;
   }
-  
+
   return this.hasGasSnap && !this.snapRejected
   }
   // @ts-ignore
