@@ -25,12 +25,12 @@ export default function connectors({
       wallets: [
         Valora({ chains, projectId }),
         CeloWallet({ chains, projectId }),
-        MetaMask({ chains, projectId })
       ],
     },
     {
       groupName: "Supports Celo",
       wallets: [
+        MetaMask({ chains, projectId }),
         braveWallet({ chains }), // only shows when in brave and  celo chains are configured in brave wallet
         safeWallet({ chains }),
         omniWallet({ chains, projectId }),

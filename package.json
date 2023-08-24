@@ -1,5 +1,5 @@
 {
-  "name": "celo-configs",
+  "name": "rainbowkit-celo",
   "version": "0.0.0",
   "private": true,
   "workspaces": [

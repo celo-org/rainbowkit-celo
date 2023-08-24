@@ -14,8 +14,6 @@ jobs:
     with:
       node-version: 16
       package-dir: "packages/rainbowkit-celo"
-    secrets:
-      npm-token: ${{ secrets.NPM_TOKEN }}
-#      akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
-#      akeyless-github-access-id: p-kf9vjzruht6l
-#      akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
+      akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
+      akeyless-github-access-id: p-kf9vjzruht6l
+      akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
