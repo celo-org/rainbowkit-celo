@@ -8,4 +8,3 @@ const Alfajores: Chain = {
 };
 
 export default Alfajores;
-  
