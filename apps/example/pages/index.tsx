@@ -5,6 +5,7 @@ import styles from "../styles/Home.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import SyntaxHighlighter from "react-syntax-highlighter";
 
+
 const code = `// for ${version}
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig,  } from "wagmi";
@@ -51,6 +52,7 @@ export function Demo() {
 }
 
 const Home: NextPage = () => {
+
   return (
     <>
       <Head>
