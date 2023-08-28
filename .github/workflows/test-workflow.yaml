@@ -7,13 +7,11 @@ on:
 jobs:
 
   NPM-Publish:
-
-    runs-on: ["self-hosted", "rainbowkit-celo"]
     permissions: # Must change the job token permissions to use JWT auth
       contents: read
       id-token: write
 
-    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@main
+    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.11.0
     with:
       node-version: 16
       package-dir: "packages/rainbowkit-celo"
