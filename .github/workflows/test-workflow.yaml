@@ -2,19 +2,26 @@ name: "NPM Publish"
 on:
   release:
     types: [published]
-#  pull_request:
+  push:
+    branches:
+      - jcortejoso/npm-publish-skip-run
+
 
 jobs:
-
-  NPM-Publish:
-    permissions: # Must change the job token permissions to use JWT auth
+  npm-publish:
+    runs-on: ['self-hosted', 'rainbowkit']
+    # Must change the job token permissions to use JWT auth
+    permissions: 
       contents: read
       id-token: write
-
-    uses: celo-org/reusable-workflows/.github/workflows/npm-publish.yaml@v1.11.0
-    with:
-      node-version: 16
-      package-dir: "packages/rainbowkit-celo"
-      akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
-      akeyless-github-access-id: p-kf9vjzruht6l
-      akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build and publish npm package
+        uses: celo-org/reusable-workflows/npm-publish@a10283d3ecea963d9d93241fd18a2df8784eb0ef
+        with:
+          node-version: 16
+          package-dir: "packages/rainbowkit-celo"
+          akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
+          akeyless-github-access-id: p-kf9vjzruht6l
+          akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
