@@ -4,7 +4,7 @@ on:
     types: [published]
   push:
     branches:
-      - jcortejoso/npm-publish-skip-run
+      - jcortejoso/npm-publish
 
 
 jobs:
@@ -24,4 +24,4 @@ jobs:
           package-dir: "packages/rainbowkit-celo"
           akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
           akeyless-github-access-id: p-kf9vjzruht6l
-          akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
+          akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token-jcortejoso-test
