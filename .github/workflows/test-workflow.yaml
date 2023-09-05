@@ -6,7 +6,6 @@ on:
     branches:
       - jcortejoso/npm-publish
 
-
 jobs:
   npm-publish:
     runs-on: ['self-hosted', 'rainbowkit']
