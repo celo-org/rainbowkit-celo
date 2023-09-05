@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Build and publish npm package
-        uses: celo-org/reusable-workflows/npm-publish@a10283d3ecea963d9d93241fd18a2df8784eb0ef
+        uses: celo-org/reusable-workflows/.github/actions/npm-publish@a10283d3ecea963d9d93241fd18a2df8784eb0ef
         with:
           node-version: 16
           package-dir: "packages/rainbowkit-celo"
