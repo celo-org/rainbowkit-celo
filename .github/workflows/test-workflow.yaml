@@ -16,6 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Install yarn package manager
+        run: |
+          sudo apt update -y
+          sudo apt install -y yarnpkg
+
       - name: Build and publish npm package
         uses: celo-org/reusable-workflows/.github/actions/npm-publish@a10283d3ecea963d9d93241fd18a2df8784eb0ef
         with:
