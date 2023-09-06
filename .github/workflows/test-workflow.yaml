@@ -1,10 +1,8 @@
 name: "NPM Publish"
 on:
   release:
-    types: [published]
-  push:
-    branches:
-      - jcortejoso/npm-publish
+    types:
+      - published
 
 jobs:
   npm-publish:
@@ -17,7 +15,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Build and publish npm package
-        uses: celo-org/reusable-workflows/.github/actions/npm-publish@jcortejoso/npm-publish-composite
+        uses: celo-org/reusable-workflows/.github/actions/npm-publish@961f7ff97e3aa18335ac581ecdd6ab753a6daad3 # main Sept 6th 2023
         with:
           node-version: 16
           package-dir: "packages/rainbowkit-celo"
@@ -25,4 +23,4 @@ jobs:
           package-access: "public"
           akeyless-api-gateway: https://api.gateway.akeyless.celo-networks-dev.org
           akeyless-github-access-id: p-kf9vjzruht6l
-          akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token-jcortejoso-test
+          akeyless-token-path: /static-secrets/apps-tooling-circle/npm-publish-token
