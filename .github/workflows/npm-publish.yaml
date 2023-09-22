@@ -3,10 +3,16 @@ on:
   release:
     types:
       - published
+  push:
+    branches:
+      - 'jcortejoso/npm-publish-org-runners'
 
 jobs:
   npm-publish:
-    runs-on: ['self-hosted', 'rainbowkit']
+    runs-on:
+      - 'self-hosted'
+      - 'org'
+      - 'npm-publish'
     # Must change the job token permissions to use JWT auth
     permissions: 
       contents: read
