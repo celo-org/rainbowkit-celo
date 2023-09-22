@@ -9,10 +9,7 @@ on:
 
 jobs:
   npm-publish:
-    runs-on:
-      - 'self-hosted'
-      - 'org'
-      - 'npm-publish'
+    runs-on: ['self-hosted', 'npm-publish']
     # Must change the job token permissions to use JWT auth
     permissions: 
       contents: read
