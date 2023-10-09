@@ -7,12 +7,15 @@
     "packages/*"
   ],
   "scripts": {
+    "cs": "changeset",
+    "release": "yarn build && yarn cs publish",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "eslint-config-custom": "*",
     "prettier": "latest",
     "turbo": "latest"
