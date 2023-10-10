@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - chore/run-cs-action
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
