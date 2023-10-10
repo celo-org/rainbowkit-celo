@@ -31,8 +31,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: Setup yarn
-        run: npm -g install yarn@1.22.10
+      - name: 'Setup yarn'
+        shell: bash
+        run: |
+          npm install --global yarn
       - name: Install Dependencies
         run: yarn​
       - name: Create Release Pull Request or Publish to npm
