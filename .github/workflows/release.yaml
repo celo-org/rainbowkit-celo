@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - chore/run-cs-action
       - 'prerelease/*'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
@@ -33,11 +34,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - name: 'Setup yarn'
-        shell: bash
-        run: |
-          npm install --global yarn
-          source ~/.bashrc
+      # - name: 'Setup yarn'
+      #   shell: bash
+      #   run: |
+      #     npm install --global yarn
+      #     source ~/.bashrc
       - name: Install Dependencies
         shell: bash
         run: yarn
