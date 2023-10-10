@@ -27,10 +27,12 @@ jobs:
           api-url: https://api.gateway.akeyless.celo-networks-dev.org
           access-id: p-kf9vjzruht6l
           static-secrets: '{"/static-secrets/apps-tooling-circle/npm-publish-token":"NPM_TOKEN"}'
-      - name: Setup Node.js 16.x
+      - name: Setup Node.js 18.x
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
+      - name: Setup yarn
+        run: npm -g install yarn@1.22.10
       - name: Install Dependencies
         run: yarn​
       - name: Create Release Pull Request or Publish to npm
