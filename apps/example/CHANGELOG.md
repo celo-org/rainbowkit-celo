@@ -1,5 +1,13 @@
 # example
 
+## 1.1.2
+
+### Patch Changes
+
+- 551b98f: Dont expose Version (fix module error in esm )
+- Updated dependencies [551b98f]
+  - @celo/rainbowkit-celo@1.1.2
+
 ## 1.1.1
 
 ### Patch Changes

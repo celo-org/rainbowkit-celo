@@ -1,5 +1,11 @@
 # @celo/rainbowkit-celo
 
+## 1.1.2
+
+### Patch Changes
+
+- 551b98f: Dont expose Version (fix module error in esm )
+
 ## 1.1.1
 
 ### Patch Changes
