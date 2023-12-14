@@ -202,7 +202,6 @@ export const metaMaskWalletPlus = ({
 
   return {
     ...wallet,
-    // @ts-expect-error
     createConnector: () => {
       const connector = shouldUseWalletConnect
         ? getWalletConnectConnector({
