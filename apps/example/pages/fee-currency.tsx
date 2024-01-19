@@ -64,7 +64,7 @@ const WithLocalWallet = () => {
   },[account])
 
 
-  const sendTransaction = useCallback(async (tx: Omit<SendTransactionParameters<typeof celoAlfajores>, 'account'>) => {
+  const sendTransaction = useCallback(async (tx: Omit<SendTransactionParameters<typeof celoAlfajores, undefined, typeof celoAlfajores>, 'account'>) => {
     if (!localAccountClient) return
     setStarted(true)
     const hash = await localAccountClient.sendTransaction(tx as SendTransactionParameters<typeof celoAlfajores>)
@@ -143,7 +143,7 @@ function OverTheWire() {
     const sendToRemoteWallet = useCallback(async() => {
       setStarted(true)
 
-      const tx: SendTransactionParameters<typeof celoAlfajores> = {
+      const tx: SendTransactionParameters<typeof celoAlfajores, undefined, typeof celoAlfajores> = {
         account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
         maxFeePerGas: BigInt(700000),
@@ -152,7 +152,7 @@ function OverTheWire() {
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
       }
       try {
-        const gas = await publicClient.estimateGas(tx)
+        const gas = await publicClient.estimateGas(tx as SendTransactionParameters)
         const hash = await client.data?.sendTransaction({...tx, gas})
         console.log("tx",hash)
         setSendTransactionHash(hash!)
