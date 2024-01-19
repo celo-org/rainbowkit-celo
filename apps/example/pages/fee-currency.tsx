@@ -7,7 +7,7 @@ import { useContractRead, useWalletClient, usePublicClient, useChainId } from 'w
 import {privateKeyToAccount } from 'viem/accounts'
 import { Hex, SendTransactionParameters,  createWalletClient, http } from 'viem'
 import SyntaxHighlighter from "react-syntax-highlighter";
-import {registryABI} from "@celo/abis/types/wagmi"
+import {registryABI} from "@celo/abis"
 import styles from "../styles/FeeCurrency.module.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
