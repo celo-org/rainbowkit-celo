@@ -146,7 +146,7 @@ function OverTheWire() {
       const tx: SendTransactionParameters<typeof celoAlfajores> = {
         account: client.data?.account!,
         feeCurrency: cUSDAddress.data,
-        maxFeePerGas: BigInt(700000),
+        maxFeePerGas: BigInt(5000000000),
         maxPriorityFeePerGas: BigInt(700000),
         value: BigInt(100000000000000000),
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
