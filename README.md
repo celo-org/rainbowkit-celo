@@ -87,3 +87,17 @@ const wagmiClient = createClient({
 If the wallet exists in the normal rainbow kit package you can add it to the Supports Celo list at [lists/index.ts](https://github.com/celo-org/rainbowkit-celo/blob/main/packages/rainbowkit-celo/lists/index.ts)
 
 If the wallet needs a new config add a new file in [wallets folder](https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets) with the config needed for you wallet. Then import this to the lists/index.ts file
+
+## Example app
+
+In `apps/example` there's an example app that showcases the usage of the package. 
+
+In order to run it, execute following commands:
+
+```bash
+$ yarn build
+
+$ yarn dev
+```
+
+Then you can access the app by opening your browser and visiting http://localhost:3001/

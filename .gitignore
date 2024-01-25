@@ -37,3 +37,4 @@ packages/rainbowkit-celo/**/*.js
 README.md
 
 .env
+.vscode/
