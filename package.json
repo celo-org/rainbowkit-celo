@@ -9,21 +9,23 @@
   "scripts": {
     "cs": "changeset",
     "release": "yarn build && yarn cs publish",
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
+    "build": "yarn workspaces foreach --all -t run build",
+    "dev": "yarn workspaces foreach --all -ip run dev",
+    "lint": "yarn workspaces foreach --all -ip run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
     "eslint-config-custom": "*",
-    "prettier": "^3.2.4",
-    "turbo": "latest"
+    "prettier": "^3.2.4"
   },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "dependencies": {},
-  "packageManager": "yarn@1.22.17"
+  "browser": {
+    "tls": true
+  },
+  "packageManager": "yarn@4.0.2"
 }

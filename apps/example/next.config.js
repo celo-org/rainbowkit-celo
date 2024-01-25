@@ -18,7 +18,7 @@ module.exports = withMDX(
         // url: false,
         // zlib: false,
         // stream: false,
-        // tls: false,
+        tls: false,
       }
       config.plugins.push(
         new webpack.IgnorePlugin({ resourceRegExp: /^electron$/ })
