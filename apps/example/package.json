@@ -16,9 +16,9 @@
     "@metamask/providers": "^11.1.0",
     "@next/mdx": "^12.3.1",
     "@rainbow-me/rainbowkit": "^1.0.4",
-    "next": "12.2.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-syntax-highlighter": "^15.5.0",
     "viem": "^1.2.9",
     "wagmi": "^1.4.12"
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@types/node": "^17.0.12",
-    "@types/react": "17.0.48",
+    "@types/react": "18.2.48",
     "@wagmi/cli": "^1.2.0",
     "eslint": "^8.56.0",
     "eslint-config-custom": "*",

@@ -1,10 +1,10 @@
-const withTM = require("next-transpile-modules")(["@celo/rainbowkit-celo"]);
 const withMDX = require("@next/mdx")()
 module.exports = withMDX(
-  withTM({
+  {
     pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
     reactStrictMode: true,
     swcMinify: false,
+    transpilePackages: ["@celo/rainbowkit-celo"],
     webpack: (config, { webpack }) => {
       config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -34,5 +34,5 @@ module.exports = withMDX(
         },
       ]
     },
-  })
+  }
 )
