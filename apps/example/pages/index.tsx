@@ -11,7 +11,7 @@ import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig,  } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import celoGroups from "@celo/rainbowkit-celo/lists"
-import { Alfajores, Celo, Cannoli } from "@celo/rainbowkit-celo/chains";
+import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains";
 import "@rainbow-me/rainbowkit/styles.css";
 
 const projectId = "your-wallet-connnect-project-id" // get one at https://cloud.walletconnect.com/app
@@ -19,7 +19,7 @@ const projectId = "your-wallet-connnect-project-id" // get one at https://cloud.
 const connectors = celoGroups({chains, projectId, appName: typeof document === "object" && document.title || "Your App Name"})
 
 const { chains, publicClient } = configureChains(
-  [Alfajores, Celo, Cannoli],
+  [Alfajores, Celo],
   [jsonRpcProvider({ rpc: (chain) => ({ http: chain.rpcUrls.default.http[0] }) })]
 );
 const wagmiConfig = createConfig({
