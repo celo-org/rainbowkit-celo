@@ -1181,12 +1181,12 @@ __metadata:
   linkType: hard
 
 "@next/mdx@npm:^12.3.1":
-  version: 12.3.1
-  resolution: "@next/mdx@npm:12.3.1"
+  version: 12.3.4
+  resolution: "@next/mdx@npm:12.3.4"
   peerDependencies:
     "@mdx-js/loader": ">=0.15.0"
     "@mdx-js/react": "*"
-  checksum: 1b446e86c6a5b566bbdc2aeeea69128187c94231441be7c0cf0e48ad46b5d24c6a274b057017a59d4285b5bb7275b7e3b3d91c3a048e18254f7e7c2d3c39549a
+  checksum: 1b9d168549a33f5aba5ed23634b6dca0e163608ed4655d0dbf59382d6cf515d99f27c9f748f55c1686ffa95efa3d0d4aa77937e745e9d603e9c4af8f42b40ea6
   languageName: node
   linkType: hard
 
