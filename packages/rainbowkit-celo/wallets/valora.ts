@@ -8,7 +8,6 @@ import {
   Alfajores,
   Baklava,
   Celo,
-  Cannoli,
 } from "@celo/rainbowkit-celo/chains";
 import { getWalletConnectUri } from "@celo/rainbowkit-celo/utils/getWalletConnectUri";
 
@@ -25,7 +24,7 @@ export interface ValoraOptions {
 }
 
 export const Valora = ({
-  chains = [Alfajores, Baklava, Celo, Cannoli],
+  chains = [Alfajores, Baklava, Celo],
   projectId,
 }: ValoraOptions): Wallet => ({
   id: "valora",
