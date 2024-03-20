@@ -47,10 +47,6 @@
       "types": "./wallets/celo-terminal.d.ts",
       "import": "./wallets/celo-terminal.js"
     },
-    "./wallets/celo-wallet": {
-      "types": "./wallets/celo-wallet.d.ts",
-      "import": "./wallets/celo-wallet.js"
-    },
     "./wallets/valora": {
       "types": "./wallets/valora.d.ts",
       "import": "./wallets/valora.js"
@@ -76,21 +72,21 @@
     "build": "tsc -b"
   },
   "peerDependencies": {
-    "@rainbow-me/rainbowkit": ">=1.0.2 && <=2.0.0",
-    "viem": ">=1.2.8 && <=2.0.0",
-    "wagmi": ">=1.4.12 && <=2.0.0"
+    "@rainbow-me/rainbowkit": "^1.3.6",
+    "viem": "^1.21.4",
+    "wagmi": "^1.4.13"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",
     "@types/react-dom": "^17.0.11",
-    "eslint": "^8.56.0",
+    "eslint": "^8.57.0",
     "eslint-config-custom": "*",
     "react": "^17.0.2",
     "tsconfig": "*",
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "@metamask/providers": "^11.1.0",
-    "@wagmi/connectors": "^3.1.10"
+    "@metamask/providers": "^11.1.2",
+    "@wagmi/connectors": "^3.1.11"
   }
 }
