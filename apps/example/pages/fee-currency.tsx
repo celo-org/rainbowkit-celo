@@ -64,21 +64,16 @@ const WithLocalWallet = () => {
   },[account])
 
 
-  const sendTransaction = useCallback(async (tx: Omit<SendTransactionParameters<typeof celoAlfajores>, 'account'>) => {
+  const payWithStableToken = useCallback(async () => {
     if (!localAccountClient) return
     setStarted(true)
-    const hash = await localAccountClient.sendTransaction(tx as SendTransactionParameters<typeof celoAlfajores>)
+    const hash = await localAccountClient.sendTransaction({ 
+      feeCurrency: cUSDAddress.data as Address,
+      value: BigInt(100000000),
+      to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',})
     setSendTransactionHash(hash);
 
-  }, [localAccountClient, setStarted, setSendTransactionHash])
-
-  const payWithStableToken = useCallback(() => {
-      return sendTransaction({
-        feeCurrency: cUSDAddress.data as Address,
-        value: BigInt(100000000),
-        to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
-      })
-  }, [sendTransaction, cUSDAddress.data])
+  }, [localAccountClient, setStarted, setSendTransactionHash, cUSDAddress.data])
 
 
   return (
@@ -152,7 +147,9 @@ function OverTheWire() {
         to: '0x22579CA45eE22E2E16dDF72D955D6cf4c767B0eF',
       }
       try {
+        // @ts-expect-error
         const gas = await publicClient.estimateGas(tx)
+        // @ts-expect-error
         const hash = await client.data?.sendTransaction({...tx, gas})
         console.log("tx",hash)
         setSendTransactionHash(hash!)
