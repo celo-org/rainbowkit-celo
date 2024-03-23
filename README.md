@@ -1,5 +1,15 @@
 # Rainbowkit-celo
 
+> [!TIP]
+> As `rainbowkit@xxx` [TODO: add link], this plugin is not needed anymore. All main Celo wallets (incl. Valora, ) 
+> and chain information is available in the official rainbowkit package without this small plugin (see valora.ts [TODO: add link]).
+> If a wallet is missing, consider adding it to official rainbowkit package by opening a PR [TODO: add link to repo].
+
+> [!WARNING]
+> We are discussing [the future of the `@celo/rainbowkit-celo` package here](https://github.com/celo-org/rainbowkit-celo/discussions/85) and are considering deprecating it. If you are a current 
+> user, consider migrating to the official rainbowkit package using our migration guide, and 
+> participate in the discussion linked above.
+
 This is a plugin to help [rainbowkit](https://www.rainbowkit.com/docs) developers support the CELO protocol faster.
 It includes the chain information as well as the main CELO wallets (Valora, Celo Wallet, Celo Terminal...).
 
