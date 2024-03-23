@@ -26,7 +26,7 @@ you will understand the development process and workflow.
 To start contributing to the project, clone it to your local machine using git:
 
 ```sh
-$ git clone git@github.com:celo-org/rainbowkit-celo.git
+$ git clone https://github.com/celo-org/rainbowkit-celo.git
 ```
 
 Navigate to the project's root directory:
