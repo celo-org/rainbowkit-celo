@@ -37,7 +37,7 @@ jobs:
           access-id: p-kf9vjzruht6l
           static-secrets: '{"/static-secrets/NPM/npm-publish-token":"NPM_TOKEN"}'
       - name: Confirm Tokens 
-        if: ${{ inputs.checkAuth }} === "true"
+        if: ${{ inputs.checkAuth }} === "yes"
         run: |
             echo "Success npm tokens recieved"  
             exit 1           
