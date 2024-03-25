@@ -7,7 +7,7 @@ on:
       - 'prerelease/*'
   workflow_dispatch:
     inputs:
-      checkAuth:
+      checkAuthOnly:
           description: 'For checking that auth works'
           required: true
           type: choice
@@ -36,11 +36,6 @@ jobs:
           api-url: https://api.gateway.akeyless.celo-networks-dev.org
           access-id: p-kf9vjzruht6l
           static-secrets: '{"/static-secrets/NPM/npm-publish-token":"NPM_TOKEN"}'
-      - name: Confirm Tokens 
-        if: ${{ inputs.checkAuth }} === "yes"
-        run: |
-            echo "Success npm tokens recieved"  
-            exit 1           
       - name: Setup Node.js 18.x
         uses: actions/setup-node@v4
         with:
@@ -54,6 +49,7 @@ jobs:
         shell: bash
         run: yarn
       - name: Create Release Pull Request or Publish to npm
+        if:  ${{ inputs.checkAuthOnly }} != "yes"
         id: changesets
         uses: changesets/action@v1
         env:
