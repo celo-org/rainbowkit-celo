@@ -982,14 +982,14 @@ __metadata:
   linkType: hard
 
 "@mdx-js/loader@npm:^2.1.3":
-  version: 2.1.3
-  resolution: "@mdx-js/loader@npm:2.1.3"
+  version: 2.3.0
+  resolution: "@mdx-js/loader@npm:2.3.0"
   dependencies:
     "@mdx-js/mdx": "npm:^2.0.0"
     source-map: "npm:^0.7.0"
   peerDependencies:
     webpack: ">=4"
-  checksum: a253c8b1ee24601fbc1b8e0a0567879e6c304351e5d34c7489932a999b6bd2e91021b61e4e59ef41ac1927b3727ae599299d30ff146bb2a67313b78073920ee7
+  checksum: 64ff6c45a4ff7f344de57bc466958fbbc93b5c1dbde8af9f2b5e7b05c85fb9c71317ebf7b890371d19fc44ab7b89e67931479c22089cf9765f4afde08ffb9698
   languageName: node
   linkType: hard
 
@@ -1019,14 +1019,14 @@ __metadata:
   linkType: hard
 
 "@mdx-js/react@npm:^2.1.3":
-  version: 2.1.3
-  resolution: "@mdx-js/react@npm:2.1.3"
+  version: 2.3.0
+  resolution: "@mdx-js/react@npm:2.3.0"
   dependencies:
     "@types/mdx": "npm:^2.0.0"
     "@types/react": "npm:>=16"
   peerDependencies:
     react: ">=16"
-  checksum: f72d497e75352ff27b691f7f2f31080d80ceb1b057be734089cef4d05530ad66a8c9279b1121ebf7e0e35a01b219555dadb719bbe973058c613df52e07ac6085
+  checksum: 6d647115703dbe258f7fe372499fa8c6fe17a053ff0f2a208111c9973a71ae738a0ed376770445d39194d217e00e1a015644b24f32c2f7cb4f57988de0649b15
   languageName: node
   linkType: hard
 
