@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Github Discussions
+    url: https://github.com/celo-org/rainbowkit-celo/discussions
+    about: Please ask and answer questions here.
+  - name: Docs
+    url: https://docs.celo.org/
+    about: Documentation on the Celo Platform
