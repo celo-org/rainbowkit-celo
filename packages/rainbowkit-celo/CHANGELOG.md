@@ -1,5 +1,21 @@
 # @celo/rainbowkit-celo
 
+## 1.2.0
+
+### Minor Changes
+
+- 6b76678: (note this release contains breaking chainges but is marked as minor to keep it in sync with major of viem/wagmi)
+
+  BREAKING - remove cannoli testnet as it no longer is running
+
+  BREAKING - remove CeloWallet connector as it no longer supports WalletConnect
+
+  BREAKING - remove experimental metamask snap connector
+
+### Patch Changes
+
+- 6b76678: Upgrade Dependencies to latest minor compatible version
+
 ## 1.1.2
 
 ### Patch Changes
