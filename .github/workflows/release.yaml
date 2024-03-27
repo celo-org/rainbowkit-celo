@@ -49,7 +49,7 @@ jobs:
         shell: bash
         run: yarn
       - name: Output type
-        run: echo ${{ inputs.checkAuthOnly }} != "yes"
+        run: echo ${{ inputs.checkAuthOnly == yes }} 
       - name: Create Release Pull Request or Publish to npm
         if: false ## ${{ inputs.checkAuthOnly }} != "yes"
         id: changesets
