@@ -1,17 +1,20 @@
 # Rainbowkit-celo
 
-> [!TIP]
-> As `rainbowkit@xxx` [TODO: add link], this plugin is not needed anymore. All main Celo wallets (incl. Valora, ) 
-> and chain information is available in the official rainbowkit package without this small plugin (see valora.ts [TODO: add link]).
-> If a wallet is missing, consider adding it to official rainbowkit package by opening a PR [TODO: add link to repo].
+> [!TIP]  
+> As of `rainbowkit@xxx` [TODO: add link and version], the `@celo/rainbowkit-celo` plugin is not
+> needed anymore. All main Celo wallets (incl. Valora) and chain information are available in the
+> official rainbowkit package without need for this plugin (see `valora.ts` [TODO: add link]). If a
+> wallet is missing, consider adding it to official rainbowkit package by opening a PR [TODO: add >
+> link to repo].
 
-> [!WARNING]
-> We are discussing [the future of the `@celo/rainbowkit-celo` package here](https://github.com/celo-org/rainbowkit-celo/discussions/85) and are considering deprecating it. If you are a current 
-> user, consider migrating to the official rainbowkit package using our migration guide, and 
-> participate in the discussion linked above.
+> [!WARNING] We are discussing
+> [the future of the `@celo/rainbowkit-celo` package here](https://github.com/celo-org/rainbowkit-celo/discussions/85)
+> and are considering deprecating it. If you are a current user, consider migrating to the official
+> rainbowkit package using our migration guide, and participate in the discussion linked above.
 
-This is a plugin to help [rainbowkit](https://www.rainbowkit.com/docs) developers support the CELO protocol faster.
-It includes the chain information as well as the main CELO wallets (Valora, Celo Wallet, Celo Terminal...).
+This is a plugin to help [rainbowkit](https://www.rainbowkit.com/docs) developers support the CELO
+protocol faster. It includes the chain information as well as the main CELO wallets (Valora, Celo
+Wallet, Celo Terminal...).
 
 ## Installation
 
@@ -19,7 +22,8 @@ It includes the chain information as well as the main CELO wallets (Valora, Celo
 npm install @celo/rainbowkit-celo
 ```
 
-This package has a few peer dependencies and expect them to be installed too. Follow [their instructions](https://www.rainbowkit.com/docs/installation) if that's not done yet.
+This package has a few peer dependencies and expect them to be installed too. Follow
+[their instructions](https://www.rainbowkit.com/docs/installation) if that's not done yet.
 
 Here's the exhaustive list:
 
@@ -29,22 +33,16 @@ npm install @rainbow-me/rainbowkit @wagmi/chains wagmi viem
 
 ### A note on version compatibility
 
-After version 0.8.0 inclusive, this package has the most significant digit match the version of @rainbow-me/rainbowkit it is compatible with.
+After version 0.8.0 inclusive, this package has the most significant digit match the version of
+@rainbow-me/rainbowkit it is compatible with.
 
 IE for `@rainbow-me/rainbowkit@0.8.1` use `@celo/rainbow-kit@0.8.0`
 
 ## Usage
 
 ```ts
-import {
-  connectorsForWallets,
-  RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
-import {
-  metaMaskWallet,
-  omniWallet,
-  walletConnectWallet,
-} from "@rainbow-me/rainbowkit/wallets";
+import { connectorsForWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { metaMaskWallet, omniWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
@@ -94,13 +92,16 @@ const wagmiClient = createClient({
 
 ## Adding wallets to the config
 
-If the wallet exists in the normal rainbow kit package you can add it to the Supports Celo list at [lists/index.ts](https://github.com/celo-org/rainbowkit-celo/blob/main/packages/rainbowkit-celo/lists/index.ts)
+If the wallet exists in the normal rainbow kit package you can add it to the Supports Celo list at
+[lists/index.ts](https://github.com/celo-org/rainbowkit-celo/blob/main/packages/rainbowkit-celo/lists/index.ts)
 
-If the wallet needs a new config add a new file in [wallets folder](https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets) with the config needed for you wallet. Then import this to the lists/index.ts file
+If the wallet needs a new config add a new file in
+[wallets folder](https://github.com/celo-org/rainbowkit-celo/tree/main/packages/rainbowkit-celo/wallets)
+with the config needed for you wallet. Then import this to the lists/index.ts file
 
 ## Example app
 
-In `apps/example` there's an example app that showcases the usage of the package. 
+In `apps/example` there's an example app that showcases the usage of the package.
 
 In order to run it, execute following commands:
 
