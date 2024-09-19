@@ -1,5 +1,11 @@
 # @celo/rainbowkit-celo
 
+## 1.2.1
+
+### Patch Changes
+
+- 98a27b5: Officially sunset @celo/rainbkowkit-celo https://forum.celo.org/t/sunset-of-celo-rainbowkit-celo/9042
+
 ## 1.2.0
 
 ### Minor Changes
