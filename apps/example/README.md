@@ -1,30 +1,26 @@
-## Getting Started
 
-First, run the development server:
+# Migrating away from rainbowkit-celo
 
-```bash
-yarn dev
+## sunset
+
+This Project is sunset.
+
+Since viem + wagmi + rainbowkit now have first class support for celo we recommend just importing directly from rainbowkit and wagmi.
+
+## chains
+
+```
+- import { Alfajores, Celo } from "@celo/rainbowkit-celo/chains"
++ import {celo, celoAlfajores} from "wagmi/chains"
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## wallets
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+* Othello (formerly celo wallet) has dropped support for wallet connect
+* Celo Terminal --> use the default Wallet Connect Connector
+* Valora --> `import { valoraWallet } from '@rainbow-me/rainbowkit/wallets';`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## further reading
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_source=github.com&utm_medium=referral&utm_campaign=turborepo-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+see celo docs for a pretty decent [rainbkowkit setup](https://docs.celo.org/developer/rainbowkit-celo)
